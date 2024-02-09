@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:29:29 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:31:02 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,25 @@ typedef struct s_textures
 }	t_textures;
 
 /**
+ * String manipulation
+*/
+bool	ft_isspace(char c);
+
+/**
  * Input checking
 */
 bool	input_ok(int argc, char **argv);
+
+/**
+ * Parsing
+*/
+bool	get_textures(int fd, t_textures *textures);
+bool	is_north(char *str);
+bool	is_south(char *str);
+bool	is_east(char *str);
+bool	is_west(char *str);
+bool	is_floor(char *str);
+bool	is_ceiling(char *str);
+
 
 #endif

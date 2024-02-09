@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   isspace.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:31:13 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/09 19:41:41 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/09 19:44:12 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+/**
+ * check if a char is '\t', '\n', '\v', '\f', '\r' or ' '
+*/
+bool	ft_isspace(char c)
 {
-	t_textures	textures;
-	int			fd;
-
-	if (input_ok(argc, argv) == false)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (perror(ERR_OPEN), 0);
-	(void)fd;
-	get_textures(fd, &textures);
+	if (c == ' ' || c == '\t' || c == '\n' || \
+	c =='\v' || c == '\f' || c == '\r')
+		return (true);
+	return (false);
 }

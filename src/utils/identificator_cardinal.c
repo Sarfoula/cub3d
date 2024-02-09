@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   identificator_cardinal.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:31:13 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/09 20:25:38 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/09 20:29:28 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+bool	is_north(char *str)
 {
-	t_textures	textures;
-	int			fd;
+	if (str[0] == 'N' && str[1] == 'O')
+		return (true);
+	return (false);
+}
 
-	if (input_ok(argc, argv) == false)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (perror(ERR_OPEN), 0);
-	(void)fd;
-	get_textures(fd, &textures);
+bool	is_south(char *str)
+{
+	if (str[i][0] == 'S' && str[i][1] == 'O')
+		return (true);
+	return (false);
+}
+
+bool	is_east(char *str)
+{
+	if (str[0] == 'E' && str[1] == 'A')
+		return (true);
+	return (false);
+}
+bool	is_west(char *str)
+{
+	if (str[0] == 'W' && str[1] == 'E')
+		return (true);
+	return (false);
 }
