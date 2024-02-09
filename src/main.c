@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:20:23 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:30:28 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (ft_printf(2, ERR_OPEN, argv[1]), 0);
+		return (perror(ERR_OPEN), 0);
 	(void)fd;
-	//get_textures(fd);
+	get_textures(fd);
 }

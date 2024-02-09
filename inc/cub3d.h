@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:24:36 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:29:29 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 /**
  * ERROR MESSAGES
 */
-# define ERR_USAGE "[usage] : ./cub3d <file.cub>\n"
-# define ERR_FILENAME "File must be a .cub file\n"
-# define ERR_OPEN "Couldn't open the file '%s'\n"
+# define INP_USAGE "[usage] : ./cub3d <file.cub>\n"
+# define INP_FILENAME "File must be a .cub file\n"
+
+# define ERR_OPEN "Couldn't open data file"
 
 /**
  * Textures structure

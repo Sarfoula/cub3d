@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:33:23 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:24:18 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:29:39 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ bool	input_ok(int argc, char **argv)
 {
 	if (one_arg_only(argc) == false)
 	{
-		ft_printf(1, ERR_USAGE);
+		printf(INP_USAGE);
 		return (false);
 	}
 	if (file_is_dotcub(argv[1]) == false)
 	{
-		ft_printf(2, ERR_FILENAME);
+		printf(INP_FILENAME);
 		return (false);
 	}
 	return (true);
