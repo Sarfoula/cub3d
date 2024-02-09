@@ -12,7 +12,8 @@ INC_DIR        :=    inc/
 HEADERS        := $(addprefix $(INC_DIR), $(INC))
 
 SRC_DIR        :=	src/
-SRC            :=	main.c 
+SRC            :=	main.c \
+					parsing/check_input.c
 
 COMPILED = 0
 TOTAL_COMPILATION = $(shell ((echo ${SRC}) | wc -w | sed -e 's/^[ \t]*//'))
