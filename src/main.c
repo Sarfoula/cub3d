@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:07:00 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:25:17 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int main(int argc, char **argv)
 	(void)fd;
 	if (get_textures(fd, &textures) == false)
 		return (0);
+	// A EFFACER
 	print_textures(textures);
+	// A EFFACER
 	free_textures(&textures);
 }

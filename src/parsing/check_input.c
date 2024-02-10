@@ -6,13 +6,13 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:33:23 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 19:29:39 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:26:03 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool one_arg_only(int argc)
+static bool	one_arg_only(int argc)
 {
 	if (argc != 2)
 		return (false);

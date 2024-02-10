@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 20:25:38 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 18:30:00 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:26:30 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ bool	is_east(char *str)
 		return (true);
 	return (false);
 }
+
 bool	is_west(char *str)
 {
 	if (str[0] == 'W' && str[1] == 'E')
