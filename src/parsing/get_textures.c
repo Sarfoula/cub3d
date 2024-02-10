@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 20:16:00 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:45:49 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static bool	fill_textures(t_textures *textures, char **textures_info)
 			textures->west = textures_info[i];
 		else if (textures->floor.rgb_str == NULL && is_floor(textures_info[i]))
 			textures->floor.rgb_str = textures_info[i];
-		else if (textures->ceiling.rgb_str == NULL && is_ceiling(textures_info[i]))
+		else if (textures->ceiling.rgb_str == NULL && \
+		is_ceiling(textures_info[i]))
 			textures->ceiling.rgb_str = textures_info[i];
 		else
 			return (false);
@@ -101,7 +102,7 @@ static int	dup_six_lines(char **textures_info, int fd)
 }
 
 /**
- * Try to get the textures info from the .cub file
+ * Try to get the textures info from the .cub
  * If we fail, return false, else return true
 */
 bool	get_textures(int fd, t_textures *textures)

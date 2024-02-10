@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:28:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 20:41:07 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:46:08 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ static bool	check_rgb(t_rgb *texture)
 bool	check_textures(t_textures *textures)
 {
 	//check filepath
-	if (check_rgb(&textures->floor) == false || check_rgb(&textures->ceiling) == false)
+	if (check_rgb(&textures->floor) == false || \
+	check_rgb(&textures->ceiling) == false)
 		return (false);
 	return (true);
 }
