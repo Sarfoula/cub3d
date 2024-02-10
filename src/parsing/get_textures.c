@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:25:05 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:16:00 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ static void	init_textures(t_textures *textures)
 	textures->south = NULL;
 	textures->east = NULL;
 	textures->west = NULL;
-	textures->floor = NULL;
-	textures->ceiling = NULL;
+	textures->floor.rgb_str = NULL;
+	textures->ceiling.rgb_str = NULL;
+	textures->floor.red = -1;
+	textures->floor.green = -1;
+	textures->floor.blue = -1;
+	textures->ceiling.red = -1;
+	textures->ceiling.green = -1;
+	textures->ceiling.blue = -1;
 }
 
 /**
@@ -44,10 +50,10 @@ static bool	fill_textures(t_textures *textures, char **textures_info)
 			textures->east = textures_info[i];
 		else if (textures->west == NULL && is_west(textures_info[i]))
 			textures->west = textures_info[i];
-		else if (textures->floor == NULL && is_floor(textures_info[i]))
-			textures->floor = textures_info[i];
-		else if (textures->ceiling == NULL && is_ceiling(textures_info[i]))
-			textures->ceiling = textures_info[i];
+		else if (textures->floor.rgb_str == NULL && is_floor(textures_info[i]))
+			textures->floor.rgb_str = textures_info[i];
+		else if (textures->ceiling.rgb_str == NULL && is_ceiling(textures_info[i]))
+			textures->ceiling.rgb_str = textures_info[i];
 		else
 			return (false);
 		i++;

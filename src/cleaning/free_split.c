@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   identificator_cardinal.c                           :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 20:25:38 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:33:03 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/10 19:49:26 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/10 19:50:47 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_north(char *str)
+/**
+ * Free a char **
+*/
+void	free_split(char **rgb)
 {
-	if (str[0] == 'N' && str[1] == 'O')
-		return (true);
-	return (false);
-}
+	int	i;
 
-bool	is_south(char *str)
-{
-	if (str[0] == 'S' && str[1] == 'O')
-		return (true);
-	return (false);
-}
-
-bool	is_east(char *str)
-{
-	if (str[0] == 'E' && str[1] == 'A')
-		return (true);
-	return (false);
-}
-
-bool	is_west(char *str)
-{
-	if (str[0] == 'W' && str[1] == 'E')
-		return (true);
-	return (false);
+	i = 0;
+	while (rgb[i])
+	{
+		free(rgb[i]);
+		i++;
+	}
+	free(rgb);
 }

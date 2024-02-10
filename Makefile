@@ -14,9 +14,9 @@ HEADERS        := $(addprefix $(INC_DIR), $(INC))
 SRC_DIR        :=	src/
 SRC            :=	debug/print_textures.c \
 					main.c \
-					cleaning/free_textures.c \
+					cleaning/free_textures.c cleaning/free_split.c\
 					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c\
-					parsing/check_input.c parsing/get_textures.c
+					parsing/check_input.c parsing/get_textures.c parsing/check_textures.c
 
 COMPILED = 0
 TOTAL_COMPILATION = $(shell ((echo ${SRC}) | wc -w | sed -e 's/^[ \t]*//'))

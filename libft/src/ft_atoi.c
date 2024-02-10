@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thibault <thibault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:14:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2023/12/27 00:55:03 by thibault         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:08:18 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *str)
 {
 	int						i;
 	int						flag;
-	long long unsigned int	nb;
+	long long int			nb;
 
 	i = 0;
 	flag = 1;
