@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:07:00 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/10 18:27:09 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/10 18:27:19 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	ft_strchr_custom(const char *str, char c)
 {
-	t_textures	textures;
-	int			fd;
+	char	*s;
+	int		i;
 
-	if (input_ok(argc, argv) == false)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (perror(ERR_OPEN), 0);
-	(void)fd;
-	if (get_textures(fd, &textures) == false)
-		return (0);
-	print_textures(textures);
-	free_textures(&textures);
+	i = 0;
+	s = (char *)str;
+	while (s[i] != c && s[i])
+		i++;
+	if (s[i] == c)
+		return (1);
+	return (0);
 }

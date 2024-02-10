@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 20:31:02 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:08:33 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 
 # define ERR_OPEN "Couldn't open data file"
 
+# define ERR_TEXTURES_NBR "Cub3d couldn't get 6 ligns to read textures\n"
+# define ERR_TEXTURES_CONTENT "One of the six first ligns contains an unknown identifier\n"
 /**
  * Textures structure
 */
@@ -42,9 +44,20 @@ typedef struct s_textures
 }	t_textures;
 
 /**
+ * DEBUG
+*/
+void	print_textures(t_textures textures);
+
+/**
  * String manipulation
 */
 bool	ft_isspace(char c);
+bool	line_empty(char *line);
+
+/**
+ * Cleaning
+*/
+void	free_textures(t_textures *textures);
 
 /**
  * Input checking

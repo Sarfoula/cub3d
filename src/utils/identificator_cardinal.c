@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 20:25:38 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 20:29:28 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:30:00 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_north(char *str)
 
 bool	is_south(char *str)
 {
-	if (str[i][0] == 'S' && str[i][1] == 'O')
+	if (str[0] == 'S' && str[1] == 'O')
 		return (true);
 	return (false);
 }

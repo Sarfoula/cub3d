@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:07:00 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/10 18:44:20 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/10 18:46:55 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+void	print_textures(t_textures textures)
 {
-	t_textures	textures;
-	int			fd;
-
-	if (input_ok(argc, argv) == false)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (perror(ERR_OPEN), 0);
-	(void)fd;
-	if (get_textures(fd, &textures) == false)
-		return (0);
-	print_textures(textures);
-	free_textures(&textures);
+	if (textures.north)
+		printf("north == %s", textures.north);
+	if (textures.south)
+		printf("south == %s", textures.south);
+	if (textures.east)
+		printf("east == %s", textures.east);
+	if (textures.west)
+		printf("west == %s", textures.west);
+	if (textures.floor)
+		printf("floor == %s", textures.floor);
+	if (textures.ceiling)
+		printf("ceiling == %s", textures.ceiling);
 }

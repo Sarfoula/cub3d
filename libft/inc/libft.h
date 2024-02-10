@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:51:14 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 13:07:34 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:28:23 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 typedef struct s_list
 {
@@ -69,5 +73,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+int		ft_strchr_custom(const char *str, char c);
+char	*get_next_line(int fd);
 
 #endif

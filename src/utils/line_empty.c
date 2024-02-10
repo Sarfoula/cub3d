@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   line_empty.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:07:00 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/10 18:54:22 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/10 18:55:00 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+/**
+ * Check that the line is empty (only made of spaces or NULL)
+ * If empty, return 
+*/
+bool	line_empty(char *line)
 {
-	t_textures	textures;
-	int			fd;
+	int		i;
 
-	if (input_ok(argc, argv) == false)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (perror(ERR_OPEN), 0);
-	(void)fd;
-	if (get_textures(fd, &textures) == false)
-		return (0);
-	print_textures(textures);
-	free_textures(&textures);
+	i = 0;
+	if (!line)
+		return (false);
+	while (ft_isspace(line[i]))
+		i++;
+	if (line[i] == '\0')
+		return (true);
+	return (false);
 }

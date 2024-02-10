@@ -6,26 +6,11 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/09 20:33:33 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:19:57 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/**
- * Check that the line is empty
-*/
-bool	line_empty(char *line)
-{
-	int		i;
-
-	i = 0;
-	while (ft_isspace(line[i]))
-		i++;
-	if (line[i])
-		return (false);
-	return (true);
-}
 
 static void	init_textures(t_textures *textures)
 {
@@ -37,6 +22,11 @@ static void	init_textures(t_textures *textures)
 	textures->ceiling = NULL;
 }
 
+/**
+ * Check the identifier of the line and fill the t_textures struct
+ * if we can't recognie the identifier, we return false
+ * if we identified all 6 identifiers, we return true
+*/
 static bool	fill_textures(t_textures *textures, char **textures_info)
 {
 	int	i;
@@ -58,11 +48,56 @@ static bool	fill_textures(t_textures *textures, char **textures_info)
 			textures->floor = textures_info[i];
 		else if (textures->ceiling == NULL && is_ceiling(textures_info[i]))
 			textures->ceiling = textures_info[i];
+		else
+			return (false);
 		i++;
 	}
-
+	return (true);
 }
 
+/**
+ * Free textures_info and textures_info[0] -> textures_info[line_parsed]
+*/
+static void	free_textures_info(int line_parsed, char **textures_info)
+{
+	while (line_parsed-- > 0)
+		free(textures_info[line_parsed]);
+	free(textures_info);
+}
+
+/**
+ * Tries to duplicate six lines from the .cub file
+ * If the line is not empty :
+ * duplicate line without the beginning space
+*/
+static int	dup_six_lines(char **textures_info, int fd)
+{
+	char	*line;
+	int		line_parsed;
+	int		space_number;
+
+	line_parsed = 0;
+	line = get_next_line(fd);
+	while (line_parsed < 6 && line)
+	{
+		space_number = 0;
+		if (line_empty(line) == false)
+		{
+			while (ft_isspace(line[space_number]) == true)
+				space_number++;
+			textures_info[line_parsed] = ft_strdup(line + space_number);
+			line_parsed++;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (line_parsed);
+}
+
+/**
+ * Try to get the textures info from the .cub file
+ * If we fail, return false, else return true
+*/
 bool	get_textures(int fd, t_textures *textures)
 {
 	int		line_parsed;
@@ -72,22 +107,17 @@ bool	get_textures(int fd, t_textures *textures)
 	line_parsed = 0;
 	init_textures(textures);
 	textures_info = malloc(sizeof(char *) * 7);
-	while (line_parsed < 6)
+	line_parsed = dup_six_lines(textures_info, fd);
+	if (line_parsed < 6)
 	{
-		line = get_next_line(fd);
-		if (line_empty(line) == false)
-		{
-			textures_info[line_parsed] = line;
-			line_parsed++;
-		}
-		texture_info = NULL;
+		free_textures_info(line_parsed, textures_info);
+		return (ft_printf(2, ERR_TEXTURES_NBR), false);
 	}
 	if (fill_textures(textures, textures_info) == false)
 	{
-		while (line_parsed-- >= 0)
-			free(textures_info[line_parsed]);
-		free(textures_info);
-		return (false);
+		free_textures_info(line_parsed, textures_info);
+		return (ft_printf(2, ERR_TEXTURES_CONTENT), false);
 	}
+	free(textures_info);
 	return (true);
 }

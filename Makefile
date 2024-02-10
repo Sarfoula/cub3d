@@ -12,8 +12,11 @@ INC_DIR        :=    inc/
 HEADERS        := $(addprefix $(INC_DIR), $(INC))
 
 SRC_DIR        :=	src/
-SRC            :=	main.c \
-					parsing/check_input.c
+SRC            :=	debug/print_textures.c \
+					main.c \
+					cleaning/free_textures.c \
+					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c\
+					parsing/check_input.c parsing/get_textures.c
 
 COMPILED = 0
 TOTAL_COMPILATION = $(shell ((echo ${SRC}) | wc -w | sed -e 's/^[ \t]*//'))
@@ -37,7 +40,7 @@ _WHITE      :=    \x1b[37m
 
 #Compiler
 CC            :=    cc
-CC_FLAGS      :=    -Wextra -Werror -Wall
+CC_FLAGS      :=    
 
 
 all: libft ft_printf $(NAME)
