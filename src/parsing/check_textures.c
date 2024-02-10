@@ -6,14 +6,28 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:28:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 20:24:33 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:41:07 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static bool	has_non_numerical(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] < '0' || str[i] > '9') && ft_isspace(str[i]) == false)
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 /**
- * Check that we have one number for each rgb
+ * Check that we have one number for each rgb and no non-numerical char in them
  * @return true if we have one for each
  * @return else return false
 */
@@ -23,7 +37,11 @@ static bool	three_rgb_number(char **rgb)
 
 	i = 0;
 	while (rgb[i])
+	{
+		if (has_non_numerical(rgb[i]) == true)
+			return (false);
 		i++;
+	}
 	if (i != 3)
 		return (false);
 	return (true);
