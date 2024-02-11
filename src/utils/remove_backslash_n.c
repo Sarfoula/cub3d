@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_textures.c                                    :+:      :+:    :+:   */
+/*   remove_backslash_n.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 19:07:19 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 12:44:47 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/11 13:13:56 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/11 13:14:12 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_textures(t_textures *textures)
+/**
+ * Remove the first occurence of '\n'
+*/
+void	remove_backslash_n(char **str)
 {
-	free(textures->north.cardinal_str);
-	free(textures->south.cardinal_str);
-	free(textures->east.cardinal_str);
-	free(textures->west.cardinal_str);
-	free(textures->floor.rgb_str);
-	free(textures->ceiling.rgb_str);
+	int		i;
+	int		j;
+	int		flag;
+	char	*temp;
+
+	i = 0;
+	while (str[i])
+	{
+		flag = 0;
+		j = 0;
+		while (str[i][j] && flag == 0)
+		{
+			if (str[i][j] == '\n')
+			{
+				str[i][j] = '\0';
+				flag = 1;
+			}
+			j++;
+		}
+		i++;
+	}
 }

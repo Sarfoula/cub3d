@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:44:20 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 20:23:58 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:13:13 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 void	print_textures_str(t_textures textures)
 {
 	printf("\n----- TEXTURES STRINGS -----\n");
-	if (textures.north)
-		printf("north == %s", textures.north);
-	if (textures.south)
-		printf("south == %s", textures.south);
-	if (textures.east)
-		printf("east == %s", textures.east);
-	if (textures.west)
-		printf("west == %s", textures.west);
+	if (textures.north.cardinal_str)
+		printf("north == %s\n", textures.north.cardinal_str);
+	if (textures.south.cardinal_str)
+		printf("south == %s\n", textures.south.cardinal_str);
+	if (textures.east.cardinal_str)
+		printf("east == %s\n", textures.east.cardinal_str);
+	if (textures.west.cardinal_str)
+		printf("west == %s\n", textures.west.cardinal_str);
 	if (textures.floor.rgb_str)
-		printf("floor == %s", textures.floor.rgb_str);
+		printf("floor == %s\n", textures.floor.rgb_str);
 	if (textures.ceiling.rgb_str)
-		printf("ceiling == %s", textures.ceiling.rgb_str);
+		printf("ceiling == %s\n", textures.ceiling.rgb_str);
 	printf("\n");
 }
 

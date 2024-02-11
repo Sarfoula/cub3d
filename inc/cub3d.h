@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 20:41:48 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:14:16 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
@@ -31,7 +32,9 @@
 # define ERR_TEXTURES_NBR "Error : Cub3d couldn't get 6 ligns to read textures\n"
 # define ERR_TEXTURES_CONTENT "Error : One of the six first ligns contains an unknown identifier or has a duplicate\n"
 
-#define ERR_RGB_NBR "Error : RGB code is invalid in %s\n"
+# define ERR_FILEPATH_CONTENT "Error : there is no filepath in '%s'\n"
+
+# define ERR_RGB_NBR "Error : RGB code is invalid in '%s'\n"
 /**
  * Textures structure
 */
@@ -43,14 +46,20 @@ typedef struct s_rgb
 	int		blue;
 }	t_rgb;
 
+typedef struct s_cardinal
+{
+	char	*cardinal_str;
+	int		fd;
+}	t_cardinal;
+
 typedef struct s_textures
 {
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	t_rgb	floor;
-	t_rgb	ceiling;
+	t_cardinal	north;
+	t_cardinal	south;
+	t_cardinal	east;
+	t_cardinal	west;
+	t_rgb		floor;
+	t_rgb		ceiling;
 }	t_textures;
 
 /**
@@ -64,6 +73,7 @@ void	print_rgbs(t_textures textures);
 */
 bool	ft_isspace(char c);
 bool	line_empty(char *line);
+void	remove_backslash_n(char **str);
 
 /**
  * Cleaning
@@ -81,6 +91,8 @@ bool	input_ok(int argc, char **argv);
 */
 bool	get_textures(int fd, t_textures *textures);
 bool	check_textures(t_textures *textures);
+bool	check_filepath(t_cardinal *cardinal);
+bool	check_rgb(t_rgb *texture);
 bool	is_cardinal(char *str, char *cardinal);
 bool	is_north(char *str);
 bool	is_south(char *str);

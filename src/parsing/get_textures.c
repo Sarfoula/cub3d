@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 20:45:49 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:13:47 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 static void	init_textures(t_textures *textures)
 {
-	textures->north = NULL;
-	textures->south = NULL;
-	textures->east = NULL;
-	textures->west = NULL;
+	textures->north.cardinal_str = NULL;
+	textures->north.fd = -1;
+	textures->south.cardinal_str = NULL;
+	textures->south.fd = -1;
+	textures->east.cardinal_str = NULL;
+	textures->east.fd = -1;
+	textures->west.cardinal_str = NULL;
+	textures->west.fd = -1;
 	textures->floor.rgb_str = NULL;
 	textures->ceiling.rgb_str = NULL;
 	textures->floor.red = -1;
@@ -42,14 +46,14 @@ static bool	fill_textures(t_textures *textures, char **textures_info)
 	{
 		if (ft_strlen(textures_info[i]) == 1)
 			return (false);
-		else if (textures->north == NULL && is_north(textures_info[i]))
-			textures->north = textures_info[i];
-		else if (textures->south == NULL && is_south(textures_info[i]))
-			textures->south = textures_info[i];
-		else if (textures->east == NULL && is_east(textures_info[i]))
-			textures->east = textures_info[i];
-		else if (textures->west == NULL && is_west(textures_info[i]))
-			textures->west = textures_info[i];
+		else if (textures->north.cardinal_str == NULL && is_north(textures_info[i]))
+			textures->north.cardinal_str = textures_info[i];
+		else if (textures->south.cardinal_str == NULL && is_south(textures_info[i]))
+			textures->south.cardinal_str = textures_info[i];
+		else if (textures->east.cardinal_str == NULL && is_east(textures_info[i]))
+			textures->east.cardinal_str = textures_info[i];
+		else if (textures->west.cardinal_str == NULL && is_west(textures_info[i]))
+			textures->west.cardinal_str = textures_info[i];
 		else if (textures->floor.rgb_str == NULL && is_floor(textures_info[i]))
 			textures->floor.rgb_str = textures_info[i];
 		else if (textures->ceiling.rgb_str == NULL && \
@@ -114,7 +118,9 @@ bool	get_textures(int fd, t_textures *textures)
 	line_parsed = 0;
 	init_textures(textures);
 	textures_info = malloc(sizeof(char *) * 7);
+	textures_info[6] = NULL;
 	line_parsed = dup_six_lines(textures_info, fd);
+	remove_backslash_n(textures_info);
 	if (line_parsed < 6)
 	{
 		free_textures_info(line_parsed, textures_info);
