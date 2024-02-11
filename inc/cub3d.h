@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:20:53 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:52:24 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@
 
 # define ERR_OPEN "Couldn't open data file"
 
-# define ERR_TEXTURES_NBR "Error : Cub3d couldn't get 6 ligns to read textures\n"
-# define ERR_TEXTURES_CONTENT "Error : One of the six first ligns contains an unknown identifier or has a duplicate\n"
+# define ERR_TEXTURES_NBR "Error: Cub3d couldn't get 6 ligns to read textures\n"
+# define ERR_TEXTURES_CONTENT "Error: One of the six first ligns contains an unknown identifier or has a duplicate\n"
+# define ERR_TEXTURES_XPM "Error: the file '%s' isn't a .xpm file\n"
 
-# define ERR_FILEPATH_CONTENT "Error : there is no filepath in '%s'\n"
+# define ERR_FILEPATH_CONTENT "Error: there is no filepath in '%s'\n"
 
-# define ERR_RGB_NBR "Error : RGB code is invalid in '%s'\n"
+# define ERR_RGB_NBR "Error: RGB code is invalid in '%s'\n"
 /**
  * Textures structure
 */
@@ -74,6 +75,7 @@ void	print_rgbs(t_textures textures);
 bool	ft_isspace(char c);
 bool	line_empty(char *line);
 void	remove_backslash_n(char **str);
+bool	ft_strstr_last(char *str, char *to_find);
 
 /**
  * Cleaning

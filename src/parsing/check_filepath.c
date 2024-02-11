@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:07:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:22:05 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:51:21 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ static bool	remove_identifier(char **filepath)
 	return (true);
 }
 
+/**
+ * Check if the file is a valid .xpm that can be opened and store it in the t_cardinal struct if it is
+*/
 static bool	get_check_fd(t_cardinal *cardinal)
 {
 	int	fd;
 
+	if (ft_strstr_last(cardinal->cardinal_str, ".xpm") == false)
+	{
+		ft_printf(2, ERR_TEXTURES_XPM, cardinal->cardinal_str);
+		return (false);
+	}
 	fd = open(cardinal->cardinal_str, O_RDONLY);
 	if (fd == -1)
 	{
@@ -46,6 +54,8 @@ static bool	get_check_fd(t_cardinal *cardinal)
 		perror(ERR_OPEN);
 		return (false);
 	}
+	cardinal->fd = fd;
+	close(fd);
 }
 
 bool	check_filepath(t_cardinal *cardinal)

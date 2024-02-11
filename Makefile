@@ -15,7 +15,7 @@ SRC_DIR        :=	src/
 SRC            :=	debug/print_textures.c \
 					main.c \
 					cleaning/free_textures.c cleaning/free_split.c \
-					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c\
+					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c\
 					parsing/check_input.c parsing/get_textures.c parsing/check_textures.c parsing/check_rgb.c parsing/check_filepath.c
 
 COMPILED = 0
