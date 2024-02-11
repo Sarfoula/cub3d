@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:07:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:01:26 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:22:05 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,24 @@ static bool	remove_identifier(char **filepath)
 	return (true);
 }
 
+static bool	get_check_fd(t_cardinal *cardinal)
+{
+	int	fd;
 
+	fd = open(cardinal->cardinal_str, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf(2, "file : '%s'\n", cardinal->cardinal_str);
+		perror(ERR_OPEN);
+		return (false);
+	}
+}
 
 bool	check_filepath(t_cardinal *cardinal)
 {
 	if (remove_identifier(&cardinal->cardinal_str) == false)
-	{
 		return (false);
-	}
-	// if (get_check_fd(&cardinal) == false)
-	// 	return (false);
+	if (get_check_fd(cardinal) == false)
+	 	return (false);
 	return (true);
 }
