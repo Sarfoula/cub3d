@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:22:01 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:59:49 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,8 @@ int main(int argc, char **argv)
 	t_textures	textures;
 	int			fd;
 
-	if (input_ok(argc, argv) == false)
+	if (input_ok(argc, argv, &fd) == false)
 		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		ft_printf(2, "file : '%s'\n", argv[1]);
-		return (perror(ERR_OPEN), 0);
-	}
-	(void)fd;
 	if (get_textures(fd, &textures) == false)
 		return (0);
 	//get_map
@@ -40,4 +33,5 @@ int main(int argc, char **argv)
 	print_rgbs(textures);
 	// A EFFACER
 	free_textures(&textures);
+	printf("no issue whatsoever\n");
 }

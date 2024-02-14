@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:52:24 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:57:39 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	free_split(char **rgb);
 /**
  * Input checking
 */
-bool	input_ok(int argc, char **argv);
+bool	input_ok(int argc, char **argv, int *fd);
 
 /**
  * Parsing

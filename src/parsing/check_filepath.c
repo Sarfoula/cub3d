@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:07:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:51:21 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:59:40 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static bool	get_check_fd(t_cardinal *cardinal)
 	}
 	cardinal->fd = fd;
 	close(fd);
+	return (true);
 }
 
 bool	check_filepath(t_cardinal *cardinal)

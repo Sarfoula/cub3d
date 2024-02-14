@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:33:23 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 19:26:03 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:57:19 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ static bool	file_is_dotcub(char *file)
  * Check that input is valid
  * - 1 arg only
  * - file has append .cub
+ * - file can be opened
 */
-bool	input_ok(int argc, char **argv)
+bool	input_ok(int argc, char **argv, int *fd)
 {
 	if (one_arg_only(argc) == false)
 	{
@@ -57,6 +58,12 @@ bool	input_ok(int argc, char **argv)
 	{
 		printf(INP_FILENAME);
 		return (false);
+	}
+	*fd = open(argv[1], O_RDONLY);
+	if (*fd == -1)
+	{
+		ft_printf(2, "file : '%s'\n", argv[1]);
+		return (perror(ERR_OPEN), 0);
 	}
 	return (true);
 }
