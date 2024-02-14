@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 13:13:47 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:59:32 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ static int	dup_six_lines(char **textures_info, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	return (line_parsed);
 }
 
@@ -112,7 +114,6 @@ static int	dup_six_lines(char **textures_info, int fd)
 bool	get_textures(int fd, t_textures *textures)
 {
 	int		line_parsed;
-	char	*line;
 	char	**textures_info;
 
 	line_parsed = 0;
