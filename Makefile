@@ -4,22 +4,24 @@ LIBFT_DIR	=	libft/
 LIBFT_NAME	=	libft.a
 LIBFT		=	$(addprefix $(LIBFT_DIR), $(LIBFT_NAME))
 
-
-
 INC            :=    cub3d.h
 INC_DIR        :=    inc/
 
 HEADERS        := $(addprefix $(INC_DIR), $(INC))
 
+### PARSING ### 
+PARSING			:=	textures/check_input.c textures/get_textures.c textures/check_textures.c textures/check_rgb.c textures/check_filepath.c \
+					map/get_map.c
+PARSING_DIR		:=	parsing/
+PARSING_APPEND	:=	$(addprefix $(PARSING_DIR), $(PARSING))
+
 SRC_DIR        :=	src/
 SRC            :=	debug/print_textures.c \
 					main.c \
 					cleaning/free_textures.c cleaning/free_split.c \
-					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c\
-					parsing/check_input.c parsing/get_textures.c parsing/check_textures.c parsing/check_rgb.c parsing/check_filepath.c
+					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c \
+					$(PARSING_APPEND)
 
-COMPILED = 0
-TOTAL_COMPILATION = $(shell ((echo ${SRC}) | wc -w | sed -e 's/^[ \t]*//'))
 
 OBJ_DIR        :=    obj/
 OBJ            :=    $(SRC:%.c=$(OBJ_DIR)%.o)
@@ -51,8 +53,6 @@ $(NAME): $(OBJ) $(FT_PRINTF) $(LIBFT)
 
 $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
 	@mkdir -p $(@D)
-	@$(eval COMPILED=$(shell echo $$((${COMPILED}+1))))
-	@echo "Compiling in progress ${COMPILED}/${TOTAL_COMPILATION}"
 	$(CC) $(CC_FLAGS) -I $(INC_DIR) -c $< -o $@
 libft:
 	@make -C libft
