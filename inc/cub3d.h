@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 14:21:34 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:57:53 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 
 # define ERR_FILEPATH_CONTENT "Error: there is no filepath in '%s'\n"
 
+# define ERR_MAP_CHAR "Error: invalid char '%c' in map\n"
 # define ERR_MAP_NULL "Error: there is no map\n"
+# define ERR_MAP_SPAWN "Error: invalid number of spawns\n"
 
 # define ERR_OPEN "Couldn't open data file"
 
@@ -66,12 +68,19 @@ typedef struct s_textures
 	t_rgb		ceiling;
 }	t_textures;
 
+typedef struct s_map
+{
+	char	**str;
+	int		nbr_column;
+	int		nbr_line;
+}	t_map;
+
 /********************************************************
 					Debug
 *********************************************************/
 void	print_textures_str(t_textures textures);
 void	print_rgbs(t_textures textures);
-void	print_map(char **map);
+void	print_map(t_map map);
 
 /********************************************************
 					String Manipulation
@@ -87,7 +96,7 @@ int		countchar(char *str, char c);
 *********************************************************/
 void	free_textures(t_textures *textures);
 void	free_split(char **rgb);
-void	free_map(char **map);
+void	free_map(t_map *map);
 
 /********************************************************
 					Input checking
@@ -113,8 +122,9 @@ bool	is_floor(char *str);
 bool	is_ceiling(char *str);
 
 //	---	Map	---
-bool	get_map(int fd, char ***map);
-
-
+bool	get_map(int fd, t_map *map);
+bool	check_map(t_map map);
+bool	check_map_char(t_map map);
+bool	is_player(char c);
 
 #endif

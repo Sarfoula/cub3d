@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_map.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 13:47:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 15:56:45 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/19 15:49:37 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/19 15:49:50 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_map(t_map map)
+bool	is_player(char c)
 {
-	int	i;
-
-	i = 0;
-	ft_printf(1, "----- MAP -----\n");
-	while (map.str[i])
-	{
-		ft_printf(1, "%s\n", map.str[i]);
-		i++;
-	}
-	ft_printf(1, "map nbr column %d\n", map.nbr_column);
-	ft_printf(1, "map nbr line %d\n", map.nbr_line);
-	ft_printf(1, "\n");
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

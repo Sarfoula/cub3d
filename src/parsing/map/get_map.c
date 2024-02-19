@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 14:24:16 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:45:01 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,38 @@ static char	*copy_map_lines(char *line, int fd)
 	return (map);
 }
 
-bool	get_map(int fd, char ***map)
+// void	set_column_nbr(t_map *map)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	ret;
+
+// 	i = 0;
+// 	ret = 0;
+// 	while (map->str[i])
+// 	{
+// 		j = 0;
+// 		while (str[i][j])
+// 		{
+
+// 			j++;
+// 		}
+// 		if (j > ret)
+// 			ret = j;
+// 		i++;
+// 	}
+// }
+
+// void	set_line_nbr(t_map *map)
+// {
+// 	int	ret;
+
+// 	while (map->str[ret])
+// 		ret++;
+// 	map->nbr_line = ret;
+// }
+
+bool	get_map(int fd, t_map *map)
 {
 	char	*line;
 	char	*one_line_map;
@@ -59,7 +90,9 @@ bool	get_map(int fd, char ***map)
 		return (false);
 	}
 	one_line_map = copy_map_lines(line, fd);
-	*map = ft_split(one_line_map, '\n');
+	map->str = ft_split(one_line_map, '\n');
+	//set_column_nbr(map)
+	//set_line_nbr(map);
 	free(one_line_map);
 	return (true);
 }

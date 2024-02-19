@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 14:24:21 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:45:17 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_textures	textures;
 	int			fd;
-	char		**map;
+	t_map		map;
 
-	map = NULL;
+	map.str = NULL;
 	if (input_ok(argc, argv, &fd) == false)
 		return (0);
 	if (get_textures(fd, &textures) == false)
@@ -31,7 +31,13 @@ int	main(int argc, char **argv)
 	close(fd);
 	if (check_textures(&textures) == false)
 	{
-		free_map(map);
+		free_map(&map);
+		free_textures(&textures);
+		return (0);
+	}
+	if (check_map(map) == false)
+	{
+		free_map(&map);
 		free_textures(&textures);
 		return (0);
 	}
@@ -41,6 +47,6 @@ int	main(int argc, char **argv)
 	print_map(map);
 	// A EFFACER
 	free_textures(&textures);
-	free_map(map);
+	free_map(&map);
 	printf("no issue whatsoever\n");
 }

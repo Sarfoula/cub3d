@@ -6,23 +6,23 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:48:09 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:53:43 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:54:30 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(char **map)
+void	free_map(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	if (!map)
+	if (!map->str)
 		return ;
-	while (map[i])
+	while (map->str[i])
 	{
-		free(map[i]);
+		free(map->str[i]);
 		i++;
 	}
-	free(map);
+	free(map->str);
 }
