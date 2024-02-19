@@ -6,13 +6,13 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:18:59 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:24:21 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_textures	textures;
 	int			fd;
@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 	// A EFFACER
 	print_textures_str(textures);
 	print_rgbs(textures);
+	print_map(map);
 	// A EFFACER
 	free_textures(&textures);
 	free_map(map);

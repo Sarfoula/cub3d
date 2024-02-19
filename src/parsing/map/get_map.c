@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:26:40 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:24:16 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,36 +28,38 @@ static char	*skip_empty_lines(int fd)
 /**
  * Copy each line from the File to the char ***
 */
-static void	copy_map_lines(char ***temp, char *line, int *i, int fd)
+static char	*copy_map_lines(char *line, int fd)
 {
+	char	*map;
+	char	*temp;
+
+	map = ft_strdup(line);
+	free(line);
+	line = get_next_line(fd);
 	while (line_empty(line) == false && line)
 	{
-		*temp[0] = ft_strdup(line);
-		*temp = *temp + 1;
+		temp = map;
+		map = ft_strjoin(map, line);
+		free(temp);
 		free(line);
 		line = get_next_line(fd);
-		*i += 1;
 	}
+	return (map);
 }
 
 bool	get_map(int fd, char ***map)
 {
 	char	*line;
-	int		i;
-	char	**temp;
+	char	*one_line_map;
 
-	temp = malloc(sizeof(char *));
-	*map = temp;
 	line = skip_empty_lines(fd);
-	i = 0;
-	copy_map_lines(&temp, line, &i, fd);
-	if (i == 0)
+	if (!line)
 	{
 		ft_printf(2, ERR_MAP_NULL);
-		free(temp);
 		return (false);
 	}
-	else
-		temp[i] = NULL;
+	one_line_map = copy_map_lines(line, fd);
+	*map = ft_split(one_line_map, '\n');
+	free(one_line_map);
 	return (true);
 }

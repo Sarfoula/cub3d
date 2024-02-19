@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:07:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/14 12:59:40 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:30:00 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static bool	remove_identifier(char **filepath)
 }
 
 /**
- * Check if the file is a valid .xpm that can be opened and store it in the t_cardinal struct if it is
+ * Check if the file is a valid .xpm that can be opened and store it 
+ * in the t_cardinal struct if it is
 */
 static bool	get_check_fd(t_cardinal *cardinal)
 {
@@ -64,6 +65,6 @@ bool	check_filepath(t_cardinal *cardinal)
 	if (remove_identifier(&cardinal->cardinal_str) == false)
 		return (false);
 	if (get_check_fd(cardinal) == false)
-	 	return (false);
+		return (false);
 	return (true);
 }

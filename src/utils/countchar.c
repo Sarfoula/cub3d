@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   countchar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 13:48:09 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:53:43 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/19 14:19:35 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/19 14:21:16 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(char **map)
+int	countchar(char *str, char c)
 {
+	int	ret;
 	int	i;
 
+	if (!str)
+		return (0);
+	ret = 0;
 	i = 0;
-	if (!map)
-		return ;
-	while (map[i])
+	while (str[i])
 	{
-		free(map[i]);
+		if (str[i] == c)
+			ret++;
 		i++;
 	}
-	free(map);
+	return (ret);
 }

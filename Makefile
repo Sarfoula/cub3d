@@ -10,16 +10,16 @@ INC_DIR        :=    inc/
 HEADERS        := $(addprefix $(INC_DIR), $(INC))
 
 ### PARSING ### 
-PARSING			:=	textures/check_input.c textures/get_textures.c textures/check_textures.c textures/check_rgb.c textures/check_filepath.c \
+PARSING			:=	textures/check_input.c textures/get_textures.c textures/check_textures.c textures/check_rgb.c textures/check_filepath.c textures/fill_textures.c\
 					map/get_map.c
 PARSING_DIR		:=	parsing/
 PARSING_APPEND	:=	$(addprefix $(PARSING_DIR), $(PARSING))
 
 SRC_DIR        :=	src/
-SRC            :=	debug/print_textures.c \
+SRC            :=	debug/print_textures.c debug/print_map.c\
 					main.c \
 					cleaning/free_textures.c cleaning/free_split.c cleaning/free_map.c\
-					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c \
+					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c utils/countchar.c\
 					$(PARSING_APPEND)
 
 

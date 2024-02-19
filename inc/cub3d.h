@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:18:44 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:21:34 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_textures
 *********************************************************/
 void	print_textures_str(t_textures textures);
 void	print_rgbs(t_textures textures);
+void	print_map(char **map);
 
 /********************************************************
 					String Manipulation
@@ -79,6 +80,7 @@ bool	ft_isspace(char c);
 bool	line_empty(char *line);
 void	remove_backslash_n(char **str);
 bool	ft_strstr_last(char *str, char *to_find);
+int		countchar(char *str, char c);
 
 /********************************************************
 					Cleaning
@@ -95,8 +97,10 @@ bool	input_ok(int argc, char **argv, int *fd);
 /********************************************************
 					Parsing
 *********************************************************/
+
 //	--- Textures ---
 bool	get_textures(int fd, t_textures *textures);
+bool	fill_textures(t_textures *textures, char **textures_info);
 bool	check_textures(t_textures *textures);
 bool	check_filepath(t_cardinal *cardinal);
 bool	check_rgb(t_rgb *texture);

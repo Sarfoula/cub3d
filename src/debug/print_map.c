@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 13:48:09 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:53:43 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/19 13:47:12 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/19 14:26:11 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(char **map)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	if (!map)
-		return ;
+	ft_printf(1, "----- MAP -----\n");
 	while (map[i])
 	{
-		free(map[i]);
+		ft_printf(1, "%s\n", map[i]);
 		i++;
 	}
-	free(map);
+	ft_printf(1, "\n");
 }
