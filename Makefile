@@ -18,7 +18,7 @@ PARSING_APPEND	:=	$(addprefix $(PARSING_DIR), $(PARSING))
 SRC_DIR        :=	src/
 SRC            :=	debug/print_textures.c \
 					main.c \
-					cleaning/free_textures.c cleaning/free_split.c \
+					cleaning/free_textures.c cleaning/free_split.c cleaning/free_map.c\
 					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c \
 					$(PARSING_APPEND)
 
@@ -42,7 +42,7 @@ _WHITE      :=    \x1b[37m
 
 #Compiler
 CC            :=    cc
-CC_FLAGS      :=    
+CC_FLAGS      :=   -Wall -Wextra -Werror 
 
 
 all: libft ft_printf $(NAME)
