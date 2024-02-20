@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:28:07 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:41:16 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 
 # define ERR_MAP_CHAR "Error: invalid char '%c' in map\n"
 # define ERR_MAP_NULL "Error: there is no map\n"
-# define ERR_MAP_SPAWN "Error: invalid number of spawns\n"
+# define ERR_MAP_SPAWN_NBR "Error: invalid number of spawns\n"
+# define ERR_MAP_SPAWN_LOC "Error: spawn in invalid location\n"
 
 # define ERR_OPEN "Couldn't open data file"
 
@@ -71,7 +72,7 @@ typedef struct s_textures
 typedef struct s_map
 {
 	char	**str;
-	int		nbr_column;
+	// int		nbr_column;
 	int		nbr_line;
 	int		longest_line_index;
 }	t_map;
@@ -108,7 +109,7 @@ bool		input_ok(int argc, char **argv, int *fd);
 					Parsing
 *********************************************************/
 
-static char	*skip_empty_lines(int fd);
+char	*skip_empty_lines(int fd);
 
 //	--- Textures ---
 bool		get_textures(int fd, t_textures *textures);

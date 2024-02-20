@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:26:41 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:45:56 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,53 +34,71 @@ static char	*copy_map_lines(char *line, int fd)
 	return (map);
 }
 
-void	substract_spaces(t_map *map)
+// void	substract_spaces(t_map *map)
+// {
+// 	int	index;
+// 	int	substract;
+// 	int	i;
+
+// 	i = 0;
+// 	substract = 0;
+// 	index = map->longest_line_index;
+// 	while (map->str[index][i] == ' ')
+// 	{
+// 		substract++;
+// 		i++;
+// 	}
+// 	while (map->str[index][i])
+// 		i++;
+// 	i--;
+// 	while (map->str[index][i] == ' ' && i >= 0)
+// 	{
+// 		i--;
+// 		substract++;
+// 	}
+// 	map->nbr_column -= substract;
+// }
+
+// void	set_column_nbr(t_map *map)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	ret;
+
+// 	i = 0;
+// 	ret = 0;
+// 	while (map->str[i])
+// 	{
+// 		j = 0;
+// 		while (map->str[i][j])
+// 			j++;
+// 		if (j > ret)
+// 		{
+// 			map->longest_line_index = i;
+// 			ret = j;
+// 		}
+// 		i++;
+// 	}
+// 	map->nbr_column = ret;
+// 	substract_spaces(map);
+// }
+
+/**
+ * Crop the beginning and ending spaces from the map lines
+*/
+void	crop_map(t_map *map)
 {
-	int	index;
-	int	substract;
-	int	i;
+	int		i;
+	char	*temp;
 
 	i = 0;
-	substract = 0;
-	index = map->longest_line_index;
-	while (map->str[index][i] == ' ')
-	{
-		substract++;
-		i++;
-	}
-	while (map->str[index][i])
-		i++;
-	i--;
-	while (map->str[index][i] == ' ' && i >= 0)
-	{
-		i--;
-		substract++;
-	}
-	map->nbr_column -= substract;
-}
-
-void	set_column_nbr(t_map *map)
-{
-	int	i;
-	int	j;
-	int	ret;
-
-	i = 0;
-	ret = 0;
 	while (map->str[i])
 	{
-		j = 0;
-		while (map->str[i][j])
-			j++;
-		if (j > ret)
-		{
-			map->longest_line_index = i;
-			ret = j;
-		}
+		temp = map->str[i];
+		map->str[i] = ft_strtrim(map->str[i], " ");
+		free(temp);
 		i++;
 	}
-	map->nbr_column = ret;
-	substract_spaces(map);
 }
 
 void	set_line_nbr(t_map *map)
@@ -106,8 +124,9 @@ bool	get_map(int fd, t_map *map)
 	}
 	one_line_map = copy_map_lines(line, fd);
 	map->str = ft_split(one_line_map, '\n');
-	set_column_nbr(map);
+	// set_column_nbr(map);
 	set_line_nbr(map);
+	crop_map(map);
 	free(one_line_map);
 	return (true);
 }

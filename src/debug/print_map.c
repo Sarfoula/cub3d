@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:47:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 15:56:45 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:44:21 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	print_map(t_map map)
 	ft_printf(1, "----- MAP -----\n");
 	while (map.str[i])
 	{
-		ft_printf(1, "%s\n", map.str[i]);
+		ft_printf(1, "%sspacescheck\n", map.str[i]);
 		i++;
 	}
-	ft_printf(1, "map nbr column %d\n", map.nbr_column);
+	// ft_printf(1, "map nbr column %d\n", map.nbr_column);
 	ft_printf(1, "map nbr line %d\n", map.nbr_line);
 	ft_printf(1, "\n");
 }
