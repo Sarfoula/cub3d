@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:45:56 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:54:12 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:31:55 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 static bool	valid_char(char c)
 {
-	return(c == '0' || c == '1' || c == ' ');
+	return (c == '0' || c == '1' || c == ' ');
+}
+
+static void	update_spawn_info(t_map *map, int i, int j, int *player_spawn)
+{
+	map->spawn_x = j;
+	map->spawn_y = i;
+	*player_spawn += 1;
 }
 
 /**
@@ -36,24 +43,14 @@ bool	check_map_char(t_map *map)
 		while (map->str[i][j])
 		{
 			if (is_player(map->str[i][j]) == true)
-			{
-				map->spawn_x = j;
-				map->spawn_y = i;
-				player_spawn++;
-			}
+				update_spawn_info(map, i, j, &player_spawn);
 			else if (valid_char(map->str[i][j]) == false)
-			{
-				ft_printf(2, ERR_MAP_CHAR, map->str[i][j]);
-				return (false);
-			}
+				return (ft_printf(2, ERR_MAP_CHAR, map->str[i][j]), false);
 			j++;
 		}
 		i++;
 	}
 	if (player_spawn != 1)
-	{
-		ft_printf(2, ERR_MAP_SPAWN_NBR);
-		return (false);
-	}
+		return (ft_printf(2, ERR_MAP_SPAWN_NBR), false);
 	return (true);
 }

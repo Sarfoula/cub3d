@@ -6,14 +6,14 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:59:18 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:27:22 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:33:14 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * Copy the map we already parsed, replacing spaces by 'x' char to make it more visual
+ * Copy the map we already parsed, replacing spaces by 'x' to make it more visual
 */
 static void	copy_map(t_map *map, int i, int *j)
 {

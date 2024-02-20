@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 13:07:22 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:32:52 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static bool	check_spawn_location(t_map *map)
 
 	x = map->spawn_x;
 	y = map->spawn_y;
-	printf("x == %d y == %d\n", x, y);
 	if (x == 0 || y == 0 || y + 1 == map->nbr_line)
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);
