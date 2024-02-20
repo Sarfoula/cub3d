@@ -6,24 +6,11 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 16:45:01 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:26:41 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static char	*skip_empty_lines(int fd)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line_empty(line) == true && line)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (line);
-}
 
 /**
  * Copy each line from the File to the char ***
@@ -47,36 +34,64 @@ static char	*copy_map_lines(char *line, int fd)
 	return (map);
 }
 
-// void	set_column_nbr(t_map *map)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	ret;
+void	substract_spaces(t_map *map)
+{
+	int	index;
+	int	substract;
+	int	i;
 
-// 	i = 0;
-// 	ret = 0;
-// 	while (map->str[i])
-// 	{
-// 		j = 0;
-// 		while (str[i][j])
-// 		{
+	i = 0;
+	substract = 0;
+	index = map->longest_line_index;
+	while (map->str[index][i] == ' ')
+	{
+		substract++;
+		i++;
+	}
+	while (map->str[index][i])
+		i++;
+	i--;
+	while (map->str[index][i] == ' ' && i >= 0)
+	{
+		i--;
+		substract++;
+	}
+	map->nbr_column -= substract;
+}
 
-// 			j++;
-// 		}
-// 		if (j > ret)
-// 			ret = j;
-// 		i++;
-// 	}
-// }
+void	set_column_nbr(t_map *map)
+{
+	int	i;
+	int	j;
+	int	ret;
 
-// void	set_line_nbr(t_map *map)
-// {
-// 	int	ret;
+	i = 0;
+	ret = 0;
+	while (map->str[i])
+	{
+		j = 0;
+		while (map->str[i][j])
+			j++;
+		if (j > ret)
+		{
+			map->longest_line_index = i;
+			ret = j;
+		}
+		i++;
+	}
+	map->nbr_column = ret;
+	substract_spaces(map);
+}
 
-// 	while (map->str[ret])
-// 		ret++;
-// 	map->nbr_line = ret;
-// }
+void	set_line_nbr(t_map *map)
+{
+	int	ret;
+
+	ret = 0;
+	while (map->str[ret])
+		ret++;
+	map->nbr_line = ret;
+}
 
 bool	get_map(int fd, t_map *map)
 {
@@ -91,8 +106,8 @@ bool	get_map(int fd, t_map *map)
 	}
 	one_line_map = copy_map_lines(line, fd);
 	map->str = ft_split(one_line_map, '\n');
-	//set_column_nbr(map)
-	//set_line_nbr(map);
+	set_column_nbr(map);
+	set_line_nbr(map);
 	free(one_line_map);
 	return (true);
 }

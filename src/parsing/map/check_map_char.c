@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:45:56 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 15:57:47 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:25:38 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ bool	check_map_char(t_map map)
 		i++;
 	}
 	if (player_spawn != 1)
+	{
 		ft_printf(2, ERR_MAP_SPAWN);
+		return (false);
+	}
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:32:08 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:44:17 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:00:19 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	fill_textures(t_textures *textures, char **textures_info)
 // 			textures->west.cardinal_str = textures_info[i];
 // 		else if (textures->floor.rgb_str == NULL && is_floor(textures_info[i]))
 // 			textures->floor.rgb_str = textures_info[i];
-// 		else if (textures->ceiling.rgb_str == NULL && \
+// 		else if (textures->ceiling.rgb_str == NULL &&
 // 		is_ceiling(textures_info[i]))
 // 			textures->ceiling.rgb_str = textures_info[i];
 // 		else

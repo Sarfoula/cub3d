@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 15:57:53 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:28:07 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,58 +73,61 @@ typedef struct s_map
 	char	**str;
 	int		nbr_column;
 	int		nbr_line;
+	int		longest_line_index;
 }	t_map;
 
 /********************************************************
 					Debug
 *********************************************************/
-void	print_textures_str(t_textures textures);
-void	print_rgbs(t_textures textures);
-void	print_map(t_map map);
+void		print_textures_str(t_textures textures);
+void		print_rgbs(t_textures textures);
+void		print_map(t_map map);
 
 /********************************************************
 					String Manipulation
 *********************************************************/
-bool	ft_isspace(char c);
-bool	line_empty(char *line);
-void	remove_backslash_n(char **str);
-bool	ft_strstr_last(char *str, char *to_find);
-int		countchar(char *str, char c);
+bool		ft_isspace(char c);
+bool		line_empty(char *line);
+void		remove_backslash_n(char **str);
+bool		ft_strstr_last(char *str, char *to_find);
+int			countchar(char *str, char c);
 
 /********************************************************
 					Cleaning
 *********************************************************/
-void	free_textures(t_textures *textures);
-void	free_split(char **rgb);
-void	free_map(t_map *map);
+void		free_textures(t_textures *textures);
+void		free_split(char **rgb);
+void		free_map(t_map *map);
 
 /********************************************************
 					Input checking
 *********************************************************/
-bool	input_ok(int argc, char **argv, int *fd);
+bool		input_ok(int argc, char **argv, int *fd);
 
 /********************************************************
 					Parsing
 *********************************************************/
 
+static char	*skip_empty_lines(int fd);
+
 //	--- Textures ---
-bool	get_textures(int fd, t_textures *textures);
-bool	fill_textures(t_textures *textures, char **textures_info);
-bool	check_textures(t_textures *textures);
-bool	check_filepath(t_cardinal *cardinal);
-bool	check_rgb(t_rgb *texture);
-bool	is_cardinal(char *str, char *cardinal);
-bool	is_north(char *str);
-bool	is_south(char *str);
-bool	is_east(char *str);
-bool	is_west(char *str);
-bool	is_floor(char *str);
-bool	is_ceiling(char *str);
+bool		get_textures(int fd, t_textures *textures);
+bool		fill_textures(t_textures *textures, char **textures_info);
+bool		check_textures(t_textures *textures);
+bool		check_filepath(t_cardinal *cardinal);
+bool		check_rgb(t_rgb *texture);
+bool		is_cardinal(char *str, char *cardinal);
+bool		is_north(char *str);
+bool		is_south(char *str);
+bool		is_east(char *str);
+bool		is_west(char *str);
+bool		is_floor(char *str);
+bool		is_ceiling(char *str);
 
 //	---	Map	---
-bool	get_map(int fd, t_map *map);
-bool	check_map(t_map map);
-bool	check_map_char(t_map map);
-bool	is_player(char c);
+bool		get_map(int fd, t_map *map);
+bool		check_map(t_map map);
+bool		check_map_char(t_map map);
+bool		is_player(char c);
 
 #endif
