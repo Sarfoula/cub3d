@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:41:16 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:54:40 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_map
 	// int		nbr_column;
 	int		nbr_line;
 	int		longest_line_index;
+	int		spawn_x;
+	int		spawn_y;
 }	t_map;
 
 /********************************************************
@@ -127,8 +129,8 @@ bool		is_ceiling(char *str);
 
 //	---	Map	---
 bool		get_map(int fd, t_map *map);
-bool		check_map(t_map map);
-bool		check_map_char(t_map map);
+bool		check_map(t_map *map);
+bool		check_map_char(t_map *map);
 bool		is_player(char c);
 
 #endif

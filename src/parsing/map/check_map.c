@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:43:40 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:54:32 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
  * - the map has valid use of spaces
  * (no space inside the map, no tabs)
 */
-bool	check_map(t_map map)
+bool	check_map(t_map *map)
 {
 	if (check_map_char(map) == false)
 		return (false);

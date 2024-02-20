@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:45:56 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:31:29 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:54:12 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	valid_char(char c)
  * Check if the char of the map are valid 
  * Also check if we only have one player spawn
 */
-bool	check_map_char(t_map map)
+bool	check_map_char(t_map *map)
 {
 	int	player_spawn;
 	int	i;
@@ -30,16 +30,20 @@ bool	check_map_char(t_map map)
 	player_spawn = 0;
 	i = 0;
 	j = 0;
-	while (map.str[i])
+	while (map->str[i])
 	{
 		j = 0;
-		while (map.str[i][j])
+		while (map->str[i][j])
 		{
-			if (is_player(map.str[i][j]) == true)
-				player_spawn++;
-			else if (valid_char(map.str[i][j]) == false)
+			if (is_player(map->str[i][j]) == true)
 			{
-				ft_printf(2, ERR_MAP_CHAR, map.str[i][j]);
+				map->spawn_x = j;
+				map->spawn_y = i;
+				player_spawn++;
+			}
+			else if (valid_char(map->str[i][j]) == false)
+			{
+				ft_printf(2, ERR_MAP_CHAR, map->str[i][j]);
 				return (false);
 			}
 			j++;

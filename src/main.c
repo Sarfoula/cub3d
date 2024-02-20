@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:00:01 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:54:45 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 		free_textures(&textures);
 		return (0);
 	}
-	if (check_map(map) == false)
+	if (check_map(&map) == false)
 	{
 		free_map(&map);
 		free_textures(&textures);
