@@ -6,38 +6,39 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:54:32 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:07:22 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * Check that the spawn location is valid : 
+ * - There is floor or wall surrounding the spawn
+ * - The spawn is not located in the border of the map
+*/
+static bool	check_spawn_location(t_map *map)
+{
+	int	x;
+	int	y;
 
-// static bool	check_spawn_location(t_map map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (map.str[i])
-// 	{
-// 		j = 0;
-// 		while (map.str[i][j])
-// 		{
-// 			if (is_player(map.str[i][j]))
-// 			{
-// 				if (i == 0 || i == map.nbr_line || j == 0 )
-// 				{
-// 					ft_printf(2, ERR_MAP_SPAWN_LOC);
-// 					return (false);
-// 				}
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (true);
-// }
+	x = map->spawn_x;
+	y = map->spawn_y;
+	printf("x == %d y == %d\n", x, y);
+	if (x == 0 || y == 0 || y + 1 == map->nbr_line)
+	{
+		ft_printf(2, ERR_MAP_SPAWN_LOC);
+		return (false);
+	}
+	if (map->str[y - 1][x] == ' ' || map->str[y + 1][x] == ' ' \
+	|| map->str[y][x - 1] == ' ' || map->str[y][x + 1] == ' ' \
+	|| map->str[y][x + 1] == '\0')
+	{
+		ft_printf(2, ERR_MAP_SPAWN_LOC);
+		return (false);
+	}
+	return (true);
+}
 
 /**
  * Check that the map is valid :
@@ -51,8 +52,8 @@ bool	check_map(t_map *map)
 {
 	if (check_map_char(map) == false)
 		return (false);
-	// if (check_spawn_location(map) == false)
-	// 	return (false);
+	if (check_spawn_location(map) == false)
+		return (false);
 	/*if (check_map_closed(map) == false)
 		return (false);
 	if (check_map_spaces(map) == false)

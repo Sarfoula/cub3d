@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:54:40 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:59:44 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_textures
 typedef struct s_map
 {
 	char	**str;
-	// int		nbr_column;
+	int		nbr_column;
 	int		nbr_line;
 	int		longest_line_index;
 	int		spawn_x;
@@ -132,5 +132,6 @@ bool		get_map(int fd, t_map *map);
 bool		check_map(t_map *map);
 bool		check_map_char(t_map *map);
 bool		is_player(char c);
+void		make_map_rectangle(t_map *map);
 
 #endif
