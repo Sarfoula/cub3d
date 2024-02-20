@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 14:59:05 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:05:22 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*copy_map_lines(char *line, int fd)
 	return (map);
 }
 
-void	set_column_nbr(t_map *map)
+static void	set_column_nbr(t_map *map)
 {
 	int	i;
 	int	j;
@@ -60,7 +60,7 @@ void	set_column_nbr(t_map *map)
 /**
  * Crop the beginning and ending spaces from the map lines
 */
-void	crop_map(t_map *map)
+static void	crop_map(t_map *map)
 {
 	int		i;
 	char	*temp;
@@ -75,7 +75,7 @@ void	crop_map(t_map *map)
 	}
 }
 
-void	set_line_nbr(t_map *map)
+static void	set_line_nbr(t_map *map)
 {
 	int	ret;
 
@@ -101,7 +101,7 @@ bool	get_map(int fd, t_map *map)
 	crop_map(map);
 	set_line_nbr(map);
 	set_column_nbr(map);
-	make_map_rectangle(map);
+	make_map_rectangular(map);
 	free(one_line_map);
 	return (true);
 }

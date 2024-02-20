@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 14:59:44 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:22:39 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@
 # define ERR_TEXTURES_XPM "Error: the file '%s' isn't a .xpm file\n"
 
 /**
+ * Defines
+*/
+# define NOTHING 'x'
+
+/**
  * Textures structure
 */
 typedef struct s_rgb
@@ -72,6 +77,7 @@ typedef struct s_textures
 typedef struct s_map
 {
 	char	**str;
+	char	**str_rectangle;
 	int		nbr_column;
 	int		nbr_line;
 	int		longest_line_index;
@@ -132,6 +138,6 @@ bool		get_map(int fd, t_map *map);
 bool		check_map(t_map *map);
 bool		check_map_char(t_map *map);
 bool		is_player(char c);
-void		make_map_rectangle(t_map *map);
+void	make_map_rectangular(t_map *map);
 
 #endif
