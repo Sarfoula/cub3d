@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 12:23:00 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:17:11 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static bool	check_spawn_location(t_map *map)
 		ft_printf(2, ERR_MAP_SPAWN_LOC);
 		return (false);
 	}
-	if (map->str_rectangle[y - 1][x] == NOTHING || map->str_rectangle[y + 1][x] == NOTHING \
-	|| map->str_rectangle[y][x - 1] == NOTHING || map->str_rectangle[y][x + 1] == NOTHING \
+	if (map->str_rectangle[y - 1][x] == NOTHING \
+	|| map->str_rectangle[y + 1][x] == NOTHING \
+	|| map->str_rectangle[y][x - 1] == NOTHING \
+	|| map->str_rectangle[y][x + 1] == NOTHING \
 	|| map->str_rectangle[y][x + 1] == '\0')
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);

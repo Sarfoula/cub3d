@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 13:06:27 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 13:09:30 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:22:28 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 void	finish_reading_file(int fd)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(fd);
 	while (line)
@@ -25,4 +25,5 @@ void	finish_reading_file(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 }

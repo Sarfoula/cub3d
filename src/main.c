@@ -6,11 +6,17 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 13:06:13 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:29:41 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_map_textures(t_map *map, t_textures *textures)
+{
+	free_textures(textures);
+	free_map(map);
+}
 
 int	main(int argc, char **argv)
 {
@@ -24,30 +30,17 @@ int	main(int argc, char **argv)
 	if (get_textures(fd, &textures) == false)
 		return (close(fd), 0);
 	if (get_map(fd, &map) == false)
-	{
-		free_textures(&textures);
-		return (0);
-	}
+		return (close(fd), free_textures(&textures), 0);
+	finish_reading_file(fd);
 	if (check_textures(&textures) == false)
-	{
-		free_map(&map);
-		free_textures(&textures);
-		return (0);
-	}
+		return (free_map_textures(&map, &textures), 0);
 	if (check_map(&map) == false)
-	{
-		free_map(&map);
-		free_textures(&textures);
-		return (0);
-	}
+		return (free_map_textures(&map, &textures), 0);
 	// A EFFACER
 	print_textures_str(textures);
 	print_rgbs(textures);
 	print_map(map);
 	// A EFFACER
-	free_textures(&textures);
-	free_map(&map);
-	finish_reading_file(fd);
-	close(fd);
+	free_map_textures(&map, &textures);
 	printf("no issue whatsoever\n");
 }
