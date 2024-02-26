@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 12:52:36 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:59:39 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ bool	get_map(int fd, t_map *map)
 		return (false);
 	}
 	one_line_map = copy_map_lines(line, fd);
+	if (finish_reading_file(fd) == true)
+		return (free(one_line_map), false);
 	map->str = ft_split(one_line_map, '\n');
 	crop_map(map);
 	set_line_nbr(map);
