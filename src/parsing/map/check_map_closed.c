@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:58:13 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 12:19:11 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:14:39 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static bool	on_map_border(int i, int j, t_map *map)
 {
 	if (i == 0)
 		return (true);
-	if (i == map->nbr_line)
+	if (i == map->nbr_line - 1)
 		return (true);
 	if (j == 0)
 		return (true);
-	if (j == map->nbr_column)
+	if (j == map->nbr_column - 1)
 		return (true);
 	return (false);
 }
@@ -49,18 +49,21 @@ bool	check_map_closed(t_map * map, char **map_rectangle)
 	while (map_rectangle[i])
 	{
 		j = 0;
-		if (map_rectangle[i][j] == '0' || is_player(map_rectangle[i][j]) == true)
+		while (map_rectangle[i][j])
 		{
-			if (on_map_border(i, j, map) == true)
+			if (map_rectangle[i][j] == '0' || is_player(map_rectangle[i][j]) == true)
 			{
-				ft_printf(2, ERR_MAP_CLOSED);
-				return (false);
-			}
-			if (check_adjacent_tiles(map_rectangle, i, j) == false)
-			{
-				ft_printf(2, ERR_MAP_CLOSED);
-				return (false);
-			}
+				if (on_map_border(i, j, map) == true)
+				{
+					ft_printf(2, ERR_MAP_CLOSED);
+					return (false);
+				}
+				if (check_adjacent_tiles(map_rectangle, i, j) == false)
+				{
+					ft_printf(2, ERR_MAP_CLOSED);
+					return (false);
+				}
+			}	
 			j++;
 		}
 		i++;
