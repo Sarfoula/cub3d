@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:05:22 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:52:36 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static char	*copy_map_lines(char *line, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	return (map);
 }
 

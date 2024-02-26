@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:36:47 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:23:00 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ bool	check_map(t_map *map)
 		return (false);
 	if (check_spawn_location(map) == false)
 		return (false);
-	/*if (check_map_closed(map) == false)
+	if (check_map_closed(map, map->str_rectangle) == false)
 		return (false);
-	if (check_map_spaces(map) == false)
-		return (false);*/
 	return (true);
 }

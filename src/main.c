@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 12:54:45 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:06:13 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int argc, char **argv)
 		free_textures(&textures);
 		return (0);
 	}
-	close(fd);
 	if (check_textures(&textures) == false)
 	{
 		free_map(&map);
@@ -48,5 +47,7 @@ int	main(int argc, char **argv)
 	// A EFFACER
 	free_textures(&textures);
 	free_map(&map);
+	finish_reading_file(fd);
+	close(fd);
 	printf("no issue whatsoever\n");
 }

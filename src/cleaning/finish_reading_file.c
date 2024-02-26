@@ -1,47 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   finish_reading_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 13:48:09 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 12:50:40 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/02/26 13:06:27 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/02/26 13:09:30 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_map_str(t_map *map)
+/**
+ * Read the file to the end with get_next_line to prevent still reachable leaks
+*/
+void	finish_reading_file(int fd)
 {
-	int	i;
+	char *line;
 
-	i = 0;
-	if (!map->str)
-		return ;
-	while (map->str[i])
+	line = get_next_line(fd);
+	while (line)
 	{
-		free(map->str[i]);
-		i++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	free(map->str);
-}
-
-static void	free_map_str_rectangle(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->str_rectangle[i])
-	{
-		free(map->str_rectangle[i]);
-		i++;
-	}
-	free(map->str_rectangle);
-}
-
-void	free_map(t_map *map)
-{
-	free_map_str(map);
-	free_map_str_rectangle(map);
 }
