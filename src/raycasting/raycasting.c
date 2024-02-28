@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/02/28 14:07:13 by yallo            ###   ########.fr       */
+/*   Updated: 2024/02/28 14:14:01 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,9 @@ void raycasting(t_data *data)
 		if (lineH > SIZEY)
 			lineH = SIZEY;
 		float lineO = SIZEY / 2 - lineH / 2;
-		trace(&(data)->mlx.img, r, 0, r, lineO, 0xfFF0000);
-		trace(&(data)->mlx.img, r, lineO, r, lineH + lineO, test.color);
-		trace(&(data)->mlx.img, r, lineH + lineO, r, SIZEY, 0xfFFA500);
+		trace(&(data)->mlx.img, r, 0, r, lineO, 0xfFF0000);				//ceiling
+		trace(&(data)->mlx.img, r, lineO, r, lineH + lineO, test.color);//wall
+		trace(&(data)->mlx.img, r, lineH + lineO, r, SIZEY, 0xfFFA500); //floor
 		ray_angle += RAD/32;
 	}
 }
