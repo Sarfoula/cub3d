@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:47:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:20:38 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:16:53 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_map(t_map map)
 	ft_printf(1, "\n");
 	ft_printf(1, "map nbr column %d\n", map.nbr_column);
 	ft_printf(1, "map nbr line %d\n", map.nbr_line);
-	ft_printf(1, "Spawn x location %d\n", map.spawn_x);
-	ft_printf(1, "Spawn y location %d\n", map.spawn_y);
+	ft_printf(1, "Spawn x location %d\n", map.player.x);
+	ft_printf(1, "Spawn y location %d\n", map.player.y);
 	ft_printf(1, "\n");
 }

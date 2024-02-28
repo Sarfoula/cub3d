@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 14:56:26 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:11:49 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D__H
 # define CUB3D__H
 
+#include <math.h>
 #include <fcntl.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -20,6 +21,7 @@
 
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
+#include "../minilibx-linux/mlx.h"
 
 /**
  * ERROR MESSAGES
@@ -49,6 +51,15 @@
 */
 # define NOTHING 'x'
 
+# define SIZEY 1080
+# define SIZEX 1920
+
+# define PI 3.1415926535
+# define PI2 6.28318530718
+# define P2 PI/2
+# define P3 3*PI/2
+# define RAD 0.0174533
+
 /**
  * Textures structure
 */
@@ -76,6 +87,15 @@ typedef struct s_textures
 	t_rgb		ceiling;
 }	t_textures;
 
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	int		dx;
+	int		dy;
+	float	angle;
+}	t_player;
+
 typedef struct s_map
 {
 	char	**str;
@@ -83,9 +103,39 @@ typedef struct s_map
 	int		nbr_column;
 	int		nbr_line;
 	int		longest_line_index;
-	int		spawn_x;
-	int		spawn_y;
+	t_player	player;
+	t_textures	textures;
 }	t_map;
+
+
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_image;
+
+typedef struct s_mlx
+{
+	void		*mlx;
+	void		*window;
+	t_image		img;
+}	t_mlx;
+
+typedef struct s_data
+{
+	t_mlx	mlx;
+	t_map	map;
+}	t_data;
+
+typedef struct s_point
+{
+	int x;
+	int y;
+	int color;
+}	t_point;
 
 /********************************************************
 					Debug
@@ -143,5 +193,15 @@ bool		check_map_char(t_map *map);
 bool		is_player(char c);
 void		make_map_rectangular(t_map *map);
 bool		check_map_closed(t_map *map, char **map_rectangle);
+
+
+/********************************************************
+					MLX
+*********************************************************/
+bool	init_mlx(t_data *data);
+int		key_input(int key, t_data *data);
+void	raycasting(t_data *data);
+void	trace(t_image *img, int x1, int y1, int x2, int y2, int color);
+int	my_mlx_pixel_put(t_image *img, int x, int y, int color);
 
 #endif

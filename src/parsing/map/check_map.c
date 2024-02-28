@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 14:51:18 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:27:52 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * Check that the spawn location is valid : 
+ * Check that the spawn location is valid :
  * - There is floor or wall surrounding the spawn
  * - The spawn is not located in the border of the map
 */
@@ -22,8 +22,8 @@ static bool	check_spawn_location(t_map *map)
 	int	x;
 	int	y;
 
-	x = map->spawn_x;
-	y = map->spawn_y;
+	x = map->player.x;
+	y = map->player.y;
 	if (x == 0 || y == 0 || y + 1 == map->nbr_line)
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);

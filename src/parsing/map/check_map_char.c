@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:45:56 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:31:55 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:00:50 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,24 @@ static bool	valid_char(char c)
 
 static void	update_spawn_info(t_map *map, int i, int j, int *player_spawn)
 {
-	map->spawn_x = j;
-	map->spawn_y = i;
+	char	c;
+
+	map->player.x = j;
+	map->player.y = i;
+	c = map->str[i][j];
+	if (c == 'N')
+		map->player.angle = 1.6;
+	else if (c == 'S')
+		map->player.angle = 4.7;
+	else if (c == 'E')
+		map->player.angle = 0;
+	else if (c == 'W')
+		map->player.angle = 3.1;
 	*player_spawn += 1;
 }
 
 /**
- * Check if the char of the map are valid 
+ * Check if the char of the map are valid
  * Also check if we only have one player spawn
 */
 bool	check_map_char(t_map *map)
