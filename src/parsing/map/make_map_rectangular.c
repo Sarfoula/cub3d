@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_map_rectangular.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:59:18 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:33:14 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:18:42 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	make_map_rectangular(t_map *map)
 	int	i;
 	int	j;
 
-	map->str_rectangle = malloc(sizeof(char *) * map->nbr_line + 1);
+	map->str_rectangle = malloc(sizeof(char *) * (map->nbr_line + 1));
 	map->str_rectangle[map->nbr_line] = NULL;
 	i = 0;
 	while (map->str[i])
 	{
 		j = 0;
-		map->str_rectangle[i] = malloc(sizeof(char) * map->nbr_column + 1);
+		map->str_rectangle[i] = malloc(sizeof(char) * (map->nbr_column + 1));
 		copy_map(map, i, &j);
 		fill_end_column(map, i, &j);
 		map->str_rectangle[i][j] = '\0';

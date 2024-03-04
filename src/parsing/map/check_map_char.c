@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:45:56 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/28 13:00:50 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/04 18:28:29 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,41 @@ static bool	valid_char(char c)
 	return (c == '0' || c == '1' || c == ' ');
 }
 
-static void	update_spawn_info(t_map *map, int i, int j, int *player_spawn)
+static void	update_spawn_info(t_map *map, t_player *player, int i, int j, int *player_spawn)
 {
 	char	c;
 
-	map->player.x = j;
-	map->player.y = i;
-	c = map->str[i][j];
+	c = map->str_rectangle[i][j];
+	player->posX = j;
+	player->posY = i;
 	if (c == 'N')
-		map->player.angle = 1.6;
+	{
+		player->dirX = -1;
+		player->dirY = 0;
+		player->planeX = 0;
+		player->planeY = 0.66;
+	}
 	else if (c == 'S')
-		map->player.angle = 4.7;
+	{
+		player->dirX = 1;
+		player->dirY = 0;
+		player->planeX = 0;
+		player->planeY = -0.66;
+	}
 	else if (c == 'E')
-		map->player.angle = 0;
+	{
+		player->dirX = 0;
+		player->dirY = 1;
+		player->planeX = 0.66;
+		player->planeY = 0;
+	}
 	else if (c == 'W')
-		map->player.angle = 3.1;
+	{
+		player->dirX = 0;
+		player->dirY = -1;
+		player->planeX = -0.66;
+		player->planeY = 0;
+	}
 	*player_spawn += 1;
 }
 
@@ -39,7 +59,7 @@ static void	update_spawn_info(t_map *map, int i, int j, int *player_spawn)
  * Check if the char of the map are valid
  * Also check if we only have one player spawn
 */
-bool	check_map_char(t_map *map)
+bool	check_map_char(t_map *map, t_player *player)
 {
 	int	player_spawn;
 	int	i;
@@ -54,7 +74,7 @@ bool	check_map_char(t_map *map)
 		while (map->str[i][j])
 		{
 			if (is_player(map->str[i][j]) == true)
-				update_spawn_info(map, i, j, &player_spawn);
+				update_spawn_info(map, player, i, j, &player_spawn);
 			else if (valid_char(map->str[i][j]) == false)
 				return (ft_printf(2, ERR_MAP_CHAR, map->str[i][j]), false);
 			j++;

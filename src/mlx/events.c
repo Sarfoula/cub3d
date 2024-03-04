@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:24:44 by yallo             #+#    #+#             */
-/*   Updated: 2024/02/28 11:24:17 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/04 18:56:23 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,61 @@
 
 int	key_input(int key, t_data *data)
 {
+	int moveSpeed = 1;
+	int rotSpeed = 13000;
+
 	if (key == 65307)
 		mlx_loop_end(data->mlx.mlx);
-	if (key == 119) //up
+	if (key == 119) //W
 	{
-		data->map.player.y += data->map.player.dy / 10;
-		data->map.player.x += data->map.player.dx / 10;
+		if (data->map.str_rectangle[(int)(data->player.posX + data->player.dirX * moveSpeed)][(int)(data->player.posY)] != '1')
+			data->player.posX += data->player.dirX * moveSpeed;
+		if (data->map.str_rectangle[(int)(data->player.posX)][(int)(data->player.posY + data->player.dirY * moveSpeed)] != '1')
+			data->player.posY += data->player.dirY * moveSpeed;
 	}
-	if (key == 115)//down
+	if (key == 115) //S
 	{
-		data->map.player.y -= data->map.player.dy / 10;
-		data->map.player.x -= data->map.player.dx / 10;
+		if (data->map.str_rectangle[(int)(data->player.posX - data->player.dirX * moveSpeed)][(int)(data->player.posY)] != '1')
+			data->player.posX -= data->player.dirX * moveSpeed;
+		if (data->map.str_rectangle[(int)(data->player.posX)][(int)(data->player.posY - data->player.dirY * moveSpeed)] != '1')
+			data->player.posY -= data->player.dirY * moveSpeed;
 	}
-	if (key == 97)//left
+	if (key == 97) //A
 	{
-		data->map.player.angle -= 0.06;
-		if (data->map.player.angle <= 0)
-			data->map.player.angle += PI2;
-		data->map.player.dx = cos(data->map.player.angle) * 100;
-		data->map.player.dy = sin(data->map.player.angle) * 100;
+		if (data->map.str_rectangle[(int)(data->player.posX - data->player.planeX * moveSpeed)][(int)(data->player.posY)] != '1')
+			data->player.posX -= data->player.planeX * moveSpeed;
+		if (data->map.str_rectangle[(int)(data->player.posX)][(int)(data->player.posY - data->player.planeY * moveSpeed)] != '1')
+			data->player.posY -= data->player.planeY * moveSpeed;
 	}
-	if (key == 100)//right
+	if (key == 100) //D
 	{
-		data->map.player.angle += 0.06;
-		if (data->map.player.angle >= PI2)
-			data->map.player.angle -= PI2;
-		data->map.player.dx = cos(data->map.player.angle) * 100;
-		data->map.player.dy = sin(data->map.player.angle) * 100;
+		if (data->map.str_rectangle[(int)(data->player.posX + data->player.planeX * moveSpeed)][(int)(data->player.posY)] != '1')
+			data->player.posX += data->player.planeX * moveSpeed;
+		if (data->map.str_rectangle[(int)(data->player.posX)][(int)(data->player.posY + data->player.planeY * moveSpeed)] != '1')
+			data->player.posY += data->player.planeY * moveSpeed;
 	}
-	// if (key == 65363) //arrow right
-	// if (key == 65361) //arrow left
+	if (key == 65361) //<--
+	{
+		double olddirX = data->player.dirX;
+		data->player.dirX = data->player.dirX * cos(rotSpeed) - data->player.dirY * sin(rotSpeed);
+		data->player.dirY = olddirX * sin(rotSpeed) + data->player.dirY * cos(rotSpeed);
+		double oldPlaneX = data->player.planeX;
+		data->player.planeX = data->player.planeX * cos(rotSpeed)  - data->player.planeY * sin(rotSpeed);
+		data->player.planeY = oldPlaneX * sin(rotSpeed) + data->player.planeY * cos(rotSpeed);
+	}
+	if (key == 65363) //-->
+	{
+		double olddirX = data->player.dirX;
+		data->player.dirX = data->player.dirX * cos(-rotSpeed) - data->player.dirY * sin(-rotSpeed);
+		data->player.dirY = olddirX * sin(-rotSpeed) + data->player.dirY * cos(-rotSpeed);
+		double oldPlaneX = data->player.planeX;
+		data->player.planeX = data->player.planeX * cos(-rotSpeed) - data->player.planeY * sin(-rotSpeed);
+		data->player.planeY = oldPlaneX * sin(-rotSpeed) + data->player.planeY * cos(-rotSpeed);
+	}
 	// if (key == 112) //P
+	// {
+	// 	printf("x%f y%f\n", data->player.dirX, data->player.dirY);
+	// 	printf("x%f y%f\n\n", data->player.planeX, data->player.planeY);
+	// }
 	return (0);
 }

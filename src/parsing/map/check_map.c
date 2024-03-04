@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/27 16:27:52 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/04 16:40:59 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
  * - There is floor or wall surrounding the spawn
  * - The spawn is not located in the border of the map
 */
-static bool	check_spawn_location(t_map *map)
+static bool	check_spawn_location(t_map *map, t_player *player)
 {
 	int	x;
 	int	y;
 
-	x = map->player.x;
-	y = map->player.y;
+	x = player->posX;
+	y = player->posY;
 	if (x == 0 || y == 0 || y + 1 == map->nbr_line)
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);
@@ -49,11 +49,11 @@ static bool	check_spawn_location(t_map *map)
  * - the map has valid use of spaces
  * (no space inside the map, no tabs)
 */
-bool	check_map(t_map *map)
+bool	check_map(t_map *map, t_player *player)
 {
-	if (check_map_char(map) == false)
+	if (check_map_char(map, player) == false)
 		return (false);
-	if (check_spawn_location(map) == false)
+	if (check_spawn_location(map, player) == false)
 		return (false);
 	if (check_map_closed(map, map->str_rectangle) == false)
 		return (false);

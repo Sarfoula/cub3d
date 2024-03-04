@@ -6,173 +6,123 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:01 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/04 18:40:48 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_point	vertical(t_map *map, float ray_angle)
+void init_ray(t_ray *ray, t_player player, int x)
 {
-	int mx,my,mp,size_map;
-	float rx,ry,xo,yo;
+	ray->mapX = (int)player.posX;		//represents current pos
+	ray->mapY = (int)player.posY;		//of ray in the map[][]
+	ray->cameraX = 2 * x / (double)screenwidth - 1;		//X-coordinate represents on screen
+	ray->rayDirY = player.dirY + player.planeY * ray->cameraX;	//ray = dir of vision + (camera plan * cameraX) --> rotate dir by certain angle
+	ray->rayDirX = player.dirX + player.planeX * ray->cameraX;	//Vector direction of
+	ray->deltaDistX = (ray->rayDirX == 0) ? 1e30 : fabs(1 / ray->rayDirX);	//Distance to next border-line
+	ray->deltaDistY = (ray->rayDirY == 0) ? 1e30 : fabs(1 / ray->rayDirY);	//from a border-line
+	if (ray->rayDirX < 0)
+	{
+		ray->stepX = -1;
+		ray->sideDistX = (player.posX - ray->mapX) * ray->deltaDistX;
+	}
+	else
+	{
+		ray->stepX = 1;
+		ray->sideDistX = (ray->mapX + 1.0 - player.posX) * ray->deltaDistX;	//mapX and posX are equals ???
+	}
+	if (ray->rayDirY < 0)
+	{
+		ray->stepY = -1;
+		ray->sideDistY = (player.posY - ray->mapY) * ray->deltaDistY;
+	}
+	else
+	{
+		ray->stepY = 1;
+		ray->sideDistY = (ray->mapY + 1.0 - player.posY) * ray->deltaDistY;
+	}
+}
 
-	size_map = 0;
-	float ntan = -tan(ray_angle);
-	if (ray_angle > P2 && ray_angle < P3)
+int raycast(t_data *data, t_ray *ray, int x)
+{
+	int		hit = 0; //was there a wall hit?
+	int		lineHeight;
+
+	init_ray(ray, data->player, x);
+	while (hit == 0)
 	{
-		rx = (((int)map->player.x >> 6) << 6) - 0.0001;
-		ry = (map->player.x - rx) * ntan + map->player.y;
-		xo = -64;
-		yo = -xo * ntan;
-	}
-	if (ray_angle < P2 || ray_angle > P3)
-	{
-		rx = (((int)map->player.x >> 6) << 6) + 64;
-		ry = (map->player.x - rx) * ntan + map->player.y;
-		xo = 64;
-		yo = -xo * ntan;
-	}
-	if (ray_angle == 0 || ray_angle == PI)
-	{
-		rx = map->player.x;
-		ry = map->player.y;
-		size_map = map->nbr_line;
-	}
-	while (size_map < map->nbr_line)
-	{
-		mx = (int) (rx) >> 6;
-		my = (int) (ry) >> 6;
-		mp = my * map->nbr_line + mx;
-		if (mx < 0)
-			mx = 0;
-		if (my < 0)
-			my = 0;
-		// printf("%d > 0 && %d < %d * %d && map[%d][%d] == %c\n", mp, mp, map->nbr_line, map->nbr_column, my, mx, map->str_rectangle[my][mx]);
-		if (mp > 0 && mp < map->nbr_line * map->nbr_column && map->str_rectangle[my][mx] == '1')
-			size_map = map->nbr_line;
+		if (ray->sideDistX < ray->sideDistY)
+		{
+			ray->sideDistX += ray->deltaDistX;
+			ray->mapX += ray->stepX;
+			ray->side = 0;
+		}
 		else
 		{
-			rx += xo;
-			ry += yo;
-			size_map += 1;
+			ray->sideDistY += ray->deltaDistY;
+			ray->mapY += ray->stepY;
+			ray->side = 1;
 		}
+		if (data->map.str_rectangle[ray->mapX][ray->mapY] == '1')
+			hit = 1;
 	}
-	t_point test = {rx, ry, 0xf0000CD};
-	return (test);
-}
 
-t_point	horizontal(t_map *map, float ray_angle)
-{
-	int mx,my,mp,size_map;
-	float rx,ry,xo,yo;
-
-	size_map = 0;
-	float atan = -1 / tan(ray_angle);
-	if (ray_angle > PI)
-	{
-		ry = (((int)map->player.y >> 6) << 6) - 0.0001;
-		rx = (map->player.y - ry) * atan + map->player.x;
-		yo = -64;
-		xo = -yo * atan;
-	}
-	if (ray_angle < PI)
-	{
-		ry = (((int)map->player.y >> 6) << 6) + 64;
-		rx = (map->player.y - ry) * atan + map->player.x;
-		// printf("(%d - %f) * %f + %d == %f\n", map->player.y, ry, atan, map->player.x, rx);
-		yo = 64;
-		xo = -yo * atan;
-	}
-	if (ray_angle == 0 || ray_angle == PI)
-	{
-		rx = map->player.x;
-		ry = map->player.y;
-		size_map = map->nbr_column;
-	}
-	while (size_map < map->nbr_column)
-	{
-		mx = (int) (rx) >> 6;		//Error --> mx cannot be negative
-		my = (int) (ry) >> 6;
-		mp = my * map->nbr_column + mx;
-		if (mx < 0)					//Fix the
-			mx = 0;					//error of mx / my
-		if (my < 0)					//being negative but
-			my = 0;					//not very good
-		if (mp > 0 && mp < map->nbr_line * map->nbr_column && map->str_rectangle[my][mx] == '1')
-			size_map = map->nbr_column;
-		else
-		{
-			rx += xo;
-			ry += yo;
-			size_map += 1;
-		}
-	}
-	t_point test = {rx, ry, 0xf1E90FF};
-	return (test);
-}
-
-double	distance(t_point player, t_point p1, t_point p2)
-{
-	double l1;
-	double l2;
-
-	l1 = sqrt(pow(p1.x - player.x, 2) + pow(p1.y - player.y, 2));
-	l2 = sqrt(pow(p2.x - player.x, 2) + pow(p2.y - player.y, 2));
-	if (l1 < l2)
-		return (l1);
+	//Avoid fisheye effect
+	if (ray->side == 0)
+		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);
 	else
-		return (l2);
-}
+		ray->perpWallDist = (ray->sideDistY - ray->deltaDistY);
 
-t_point shorter(t_point player, t_point p1, t_point p2)
-{
-	double l1;
-	double l2;
-
-	l1 = sqrt(pow(p1.x - player.x, 2) + pow(p1.y - player.y, 2));
-	l2 = sqrt(pow(p2.x - player.x, 2) + pow(p2.y - player.y, 2));
-	if (l1 < l2)
-		return (p1);
-	else
-		return (p2);
+	lineHeight = (int)(screenheight / ray->perpWallDist); //Relation further distance equals smaller in our vision (inversement egale)
+	return (lineHeight);
 }
 
 void raycasting(t_data *data)
 {
-	int r;
-	float ray_angle;
-	double shortest;
-	t_point horizon;
-	t_point vertic;
-	t_point player = {data->map.player.x, data->map.player.y, 0xf000000};
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	t_ray	*ray;
 
-	ray_angle = data->map.player.angle - 30 * RAD;
-	for (r=0; r<1920;r++)
+	ray = &(data)->ray;
+	for (int x = 0; x < screenwidth; x++)
 	{
-		if (ray_angle < 0)
-			ray_angle += PI2;
-		if (ray_angle > PI2)
-			ray_angle -= PI2;
-		horizon = horizontal(&(data)->map, ray_angle);
-		vertic = vertical(&(data)->map, ray_angle);
+		lineHeight = raycast(data, ray, x);
+		drawStart = screenheight / 2 - lineHeight / 2; //Centers in middle of screen the starting of wall
+		if (drawStart < 0)
+			drawStart = 0;
+		else
+			trace(data->mlx.img, x, 0, x, drawStart, data->map.textures.ceiling.color);
+		drawEnd = screenheight / 2 + lineHeight / 2; //Centers in middle of screen the ending of wall
+		if (drawEnd >= screenheight)
+			drawEnd = screenheight - 1;
+		else
+			trace(data->mlx.img, x, drawEnd, x, screenheight, data->map.textures.floor.color);
 
-		t_point test = shorter(player, horizon, vertic);
 
-		shortest = distance(player, horizon, vertic);
-		float ca = data->map.player.angle - ray_angle;
-		if (ca < 0)
-			ca += PI2;
-		if (ca > PI2)
-			ca -= PI2;
-		shortest = shortest * cos(ca);
-		float lineH = (8 * SIZEX) / shortest;
-		if (lineH > SIZEY)
-			lineH = SIZEY;
-		float lineO = SIZEY / 2 - lineH / 2;
-		trace(&(data)->mlx.img, r, 0, r, lineO, 0xfFF0000);				//ceiling
-		trace(&(data)->mlx.img, r, lineO, r, lineH + lineO, test.color);//wall
-		trace(&(data)->mlx.img, r, lineH + lineO, r, SIZEY, 0xfFFA500); //floor
-		ray_angle += RAD/32;
+		// int texNum = data->map.str_rectangle[ray->mapX][ray->mapY] - 1;	//tells which textures (in our it will be side NS EW)
+
+		double wallX;							//Wich X was hit of the wall (X n'est pas ortho norme mais simplement le x de largeur mur)
+		if (ray->side == 0)
+			wallX = data->player.posY + ray->perpWallDist * ray->rayDirY;
+		else
+			wallX = data->player.posX + ray->perpWallDist * ray->rayDirX;
+		wallX -= floor(wallX);
+
+		int texX = (int)(wallX * (double)texWidth);		//X coordinate of the textures
+		if (ray->side == 0 && ray->rayDirX > 0)
+			texX = texWidth - texX - 1;
+		if (ray->side == 1 && ray->rayDirY < 0)
+			texX = texWidth - texX - 1;
+
+		double step = 1.0 * texHeight / lineHeight;		//how much to increase the texture coordinate per screen pixel
+		double texPos = (drawStart - screenheight / 2 + lineHeight / 2) * step;
+		for (int y = drawStart; y  < drawEnd; y++)
+		{
+			int texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+			int color = data->textures[1][texHeight * texY + texX]; //wich stripes to print
+			my_mlx_pixel_put(data->mlx.img, x, y, color);
+		}
 	}
 }
