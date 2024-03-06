@@ -70,4 +70,7 @@ cleanmlx:
 re: fclean
 	make all
 
-.PHONY: all clean fclean re libft ft_printf mlx
+test:
+	$(CC) $(CC_FLAGS) src/xpm/get_xpm_infos.c src/xpm/fill_xpm_rgb.c src/xpm/get_color_table.c src/xpm/rgb_to_int.c src/xpm/xpm_to_rgb.c src/utils/ft_atoi_base.c src/debug/print_xpm_infos.c src/debug/print_xpm_rgb.c src/cleaning/free_split.c -L ./libft -lft -I $(INC_DIR)
+
+.PHONY: all clean fclean re libft ft_printf mlx test
