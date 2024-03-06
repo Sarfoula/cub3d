@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/04 18:40:48 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/05 15:21:22 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void raycasting(t_data *data)
 		{
 			int texY = (int)texPos & (texHeight - 1);
 			texPos += step;
-			int color = data->textures[1][texHeight * texY + texX]; //wich stripes to print
+			int color = data->textures[3][texHeight * texY + texX]; //wich stripes to print
 			my_mlx_pixel_put(data->mlx.img, x, y, color);
 		}
 	}

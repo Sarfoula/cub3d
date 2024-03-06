@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:59:24 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/04 17:25:47 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/06 14:32:02 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static int	rgb_to_int(char *str)
 
 bool init_mlx(t_data *data)
 {
-	data->map.textures.ceiling.color = rgb_to_int(data->map.textures.ceiling.rgb_str);
-	data->map.textures.floor.color = rgb_to_int(data->map.textures.floor.rgb_str);
 	data->mlx.mlx = mlx_init();
 	if (!data->mlx.mlx)
 		return (false);
@@ -51,6 +49,8 @@ bool init_mlx(t_data *data)
 		return (false);
 	data->mlx.img.addr = mlx_get_data_addr(data->mlx.img.img, &data->mlx.img.bpp, \
 		&data->mlx.img.line_len, &data->mlx.img.endian);
+	data->map.textures.ceiling.color = rgb_to_int(data->map.textures.ceiling.rgb_str);
+	data->map.textures.floor.color = rgb_to_int(data->map.textures.floor.rgb_str);
 	for(int x = 0; x < texWidth; x++)
 	for(int y = 0; y < texHeight; y++)
 	{

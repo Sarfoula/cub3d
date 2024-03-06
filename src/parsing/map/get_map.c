@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/28 13:48:11 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/06 15:32:12 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ bool	get_map(int fd, t_map *map)
 	set_column_nbr(map);
 	make_map_rectangular(map);
 	free(one_line_map);
+	map->minimap = 0;
 	return (true);
 }

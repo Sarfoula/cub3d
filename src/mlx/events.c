@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:24:44 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/04 18:56:23 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/06 15:34:17 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,15 @@ int	key_input(int key, t_data *data)
 		data->player.planeX = data->player.planeX * cos(-rotSpeed) - data->player.planeY * sin(-rotSpeed);
 		data->player.planeY = oldPlaneX * sin(-rotSpeed) + data->player.planeY * cos(-rotSpeed);
 	}
-	// if (key == 112) //P
-	// {
-	// 	printf("x%f y%f\n", data->player.dirX, data->player.dirY);
-	// 	printf("x%f y%f\n\n", data->player.planeX, data->player.planeY);
-	// }
+	if (key == 112) //P
+	{
+		if (data->map.minimap == 0)
+			data->map.minimap = 1;
+		else
+			data->map.minimap = 0;
+		// printf("posX = %f posY = %f\n", data->player.posX, data->player.posY);
+		// printf("dirX = %f dirY = %f\n\n", data->player.dirX, data->player.dirY);
+		// printf("x%f y%f\n\n", data->player.planeX, data->player.planeY);
+	}
 	return (0);
 }

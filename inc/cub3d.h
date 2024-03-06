@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/04 17:58:59 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/06 15:31:46 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct s_map
 	int			nbr_column;
 	int			nbr_line;
 	int			longest_line_index;
+	int			minimap;
 	t_textures	textures;
 }	t_map;
 
@@ -214,5 +215,6 @@ void	raycasting(t_data *data);
 void	trace(t_image img, int x1, int y1, int x2, int y2, int color);
 int		my_mlx_pixel_put(t_image img, int x, int y, int color);
 void	free_mlx(t_mlx mlx);
+void	minimap(t_data *data);
 
 #endif
