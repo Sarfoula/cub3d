@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 14:59:39 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:25:19 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	crop_map(t_map *map)
 	while (map->str[i])
 	{
 		temp = map->str[i];
-		map->str[i] = ft_strtrim(map->str[i], " ");
+		map->str[i] = ft_strtrim_ending(map->str[i], " ");
 		free(temp);
 		i++;
 	}

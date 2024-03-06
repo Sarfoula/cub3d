@@ -20,7 +20,7 @@ SRC_DIR        :=	src/
 SRC            :=	debug/print_textures.c debug/print_map.c\
 					main.c \
 					cleaning/free_textures.c cleaning/free_split.c cleaning/free_map.c cleaning/finish_reading_file.c\
-					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c utils/countchar.c utils/map_utils.c\
+					utils/identificator.c utils/identificator_cardinal.c utils/isspace.c utils/line_empty.c utils/remove_backslash_n.c utils/ft_strstr.c utils/countchar.c utils/map_utils.c utils/ft_strtrim_ending.c\
 					$(PARSING_APPEND)
 
 

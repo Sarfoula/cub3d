@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/26 14:56:26 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:23:28 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ bool		line_empty(char *line);
 void		remove_backslash_n(char **str);
 bool		ft_strstr_last(char *str, char *to_find);
 int			countchar(char *str, char c);
+char		*ft_strtrim_ending(char const *s1, char const *set);
 
 /********************************************************
 					Cleaning
