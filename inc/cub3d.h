@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 14:52:54 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:28:23 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,9 @@ void			free_textures(t_textures *textures);
 void			free_split(char **rgb);
 void			free_map(t_map *map);
 bool			finish_reading_file(int fd);
+void			free_xpm_rgb(t_textures *textures);
+void			free_color_table(t_color_table *table, t_cardinal *xpm);
+void			free_xpm_rgb(t_textures *textures);
 
 /********************************************************
 					Input checking
