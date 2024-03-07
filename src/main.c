@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 15:32:50 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/07 10:28:35 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	free_map_textures(t_map *map, t_textures *textures)
 {
+	free_xpm_rgb(textures);
 	free_textures(textures);
 	free_map(map);
 }

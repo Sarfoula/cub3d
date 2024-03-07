@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_textures.c                                    :+:      :+:    :+:   */
+/*   free_color_table.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 19:07:19 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 16:28:05 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/03/06 16:27:15 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/03/06 16:27:23 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_textures(t_textures *textures)
+void	free_color_table(t_color_table *table, t_cardinal *xpm)
 {
-	free(textures->north.cardinal_str);
-	free(textures->south.cardinal_str);
-	free(textures->east.cardinal_str);
-	free(textures->west.cardinal_str);
-	free(textures->floor.rgb_str);
-	free(textures->ceiling.rgb_str);
+	int	i;
+
+	i = 0;
+	while (i < xpm->nb_of_colors)
+	{
+		free(table[i].red_hex);
+		free(table[i].green_hex);
+		free(table[i].blue_hex);
+		i++;
+	}
+	free(table);
 }

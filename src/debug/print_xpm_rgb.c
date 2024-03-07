@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_textures.c                                    :+:      :+:    :+:   */
+/*   print_xpm_rgb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 19:07:19 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 16:28:05 by tbarde-c         ###   ########.fr       */
+/*   Created: 2024/03/06 14:50:12 by tbarde-c          #+#    #+#             */
+/*   Updated: 2024/03/06 14:52:46 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_textures(t_textures *textures)
+void	print_xpm_rgb(t_cardinal *xpm)
 {
-	free(textures->north.cardinal_str);
-	free(textures->south.cardinal_str);
-	free(textures->east.cardinal_str);
-	free(textures->west.cardinal_str);
-	free(textures->floor.rgb_str);
-	free(textures->ceiling.rgb_str);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < xpm->height)
+	{
+		j = 0;
+		printf("--- line = %d ---\n", i);
+		while (j < xpm->width)
+		{
+			printf("rgb = %d\n", xpm->rgb[i][j]);
+			j++;
+		}
+		i++;
+	}
 }
