@@ -6,35 +6,11 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:59:24 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/06 14:32:02 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/07 13:20:46 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	rgb_to_int(char *str)
-{
-	int red = 0, green = 0, blue = 0;
-	int result;
-
-	while (*str && *str != ',')
-	{
-		red = red * 10 + (*str - '0');
-		str++;
-	}
-	str++;
-	while (*str && *str != ',') {
-		green = green * 10 + (*str - '0');
-		str++;
-	}
-	str++;
-	while (*str && *str != ',') {
-		blue = blue * 10 + (*str - '0');
-		str++;
-	}
-	result = (red << 16) | (green << 8) | blue;
-	return (result);
-}
 
 bool init_mlx(t_data *data)
 {

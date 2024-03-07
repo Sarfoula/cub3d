@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 16:31:41 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:44:52 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ static int	dup_six_lines(char **textures_info, int fd)
 static void	fill_xpm_infos(t_textures *textures)
 {
 	xpm_to_rgb(&textures->north);
-	xpm_to_rgb(&textures->south);
-	xpm_to_rgb(&textures->east);
-	xpm_to_rgb(&textures->west);
+	// xpm_to_rgb(&textures->south);
+	// xpm_to_rgb(&textures->east);
+	// xpm_to_rgb(&textures->west);
 }
 
 /**

@@ -1,12 +1,7 @@
-
-
-NO ./textures/fakenorth.xpm
-SO  ./textures/fakesouth.xpm
-
-WE      ./textures/fakewest.xpm
-EA 				./textures/fakeeast.xpm
-
-
+NO ./textures/eagle.xpm
+SO ./textures/eagle.xpm
+WE ./textures/eagle.xpm
+EA ./textures/eagle.xpm
 
 F 220,100,255
 C 0,0,0
@@ -14,9 +9,9 @@ C 0,0,0
 1111111111
 1000100001
 1000000001
-10000000111111111111111111111111
-1000E0000000000000000000000000011
-10000000111111111111111111111111
+1000000011
+1000E00001
+1000000011
 1000000001
 1010000101
 1111111111

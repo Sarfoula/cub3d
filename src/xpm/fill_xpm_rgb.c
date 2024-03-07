@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_xpm_rgb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:00 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 15:06:25 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:37:44 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	malloc_xpm_rgb(t_cardinal *xpm)
 {
 	int	i;
 
-	xpm->rgb = malloc(sizeof(int *) * xpm->height + 1);
+	xpm->rgb = malloc(sizeof(int *) * (xpm->height + 1));
 	xpm->rgb[xpm->height] = NULL;
 	i = 0;
 	while (i < xpm->height)

@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 10:28:30 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/07 13:20:35 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ typedef struct	s_color_table
 *********************************************************/
 void			print_textures_str(t_textures textures);
 void			print_rgbs(t_textures textures);
-void			print_map(t_map map);
+void			print_map(t_map map, t_player player);
 void			print_xpm_infos(t_cardinal xpm);
 void			print_color_table(t_color_table table);
 void			print_xpm_rgb(t_cardinal *xpm);
