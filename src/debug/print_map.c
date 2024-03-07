@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:47:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:20:38 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:58:37 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_map(t_map map)
+void	print_map(t_map map, t_player player)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ void	print_map(t_map map)
 	ft_printf(1, "\n");
 	ft_printf(1, "map nbr column %d\n", map.nbr_column);
 	ft_printf(1, "map nbr line %d\n", map.nbr_line);
-	ft_printf(1, "Spawn x location %d\n", map.spawn_x);
-	ft_printf(1, "Spawn y location %d\n", map.spawn_y);
+	ft_printf(1, "Spawn x location %d\n", player.posX);
+	ft_printf(1, "Spawn y location %d\n", player.posY);
 	ft_printf(1, "\n");
 }
