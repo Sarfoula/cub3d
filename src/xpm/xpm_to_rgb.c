@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:45:33 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 13:53:52 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/11 13:41:56 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int	*xpm_to_rgb(t_cardinal *xpm)
 {
 	t_color_table	*color_table;
-	char *name = ft_strdup(xpm->cardinal_str + 3);
 
-	xpm->fd = open(name, O_RDONLY);
+	xpm->fd = open(xpm->cardinal_str, O_RDONLY);
 	if (xpm->fd == -1)
 		return (perror(ERR_OPEN), NULL);
 	color_table = get_color_table(xpm);

@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:24:44 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/06 15:34:17 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/07 14:07:15 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	key_input(int key, t_data *data)
 {
-	int moveSpeed = 1;
-	int rotSpeed = 13000;
+	double moveSpeed = 0.3;
+	double rotSpeed = 0.05;
 
 	if (key == 65307)
 		mlx_loop_end(data->mlx.mlx);
