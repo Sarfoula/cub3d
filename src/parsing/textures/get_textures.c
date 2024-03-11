@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 13:44:52 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/11 16:01:45 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,6 @@ static int	dup_six_lines(char **textures_info, int fd)
 	return (line_parsed);
 }
 
-static void	fill_xpm_infos(t_textures *textures)
-{
-	xpm_to_rgb(&textures->north);
-	// xpm_to_rgb(&textures->south);
-	// xpm_to_rgb(&textures->east);
-	// xpm_to_rgb(&textures->west);
-}
-
 /**
  * Try to get the textures info from the .cub
  * If we fail, return false, else return true
@@ -106,7 +98,6 @@ bool	get_textures(int fd, t_textures *textures)
 		free_textures_info(line_parsed, textures_info);
 		return (ft_printf(2, ERR_TEXTURES_CONTENT), false);
 	}
-	fill_xpm_infos(textures);
 	free(textures_info);
 	return (true);
 }

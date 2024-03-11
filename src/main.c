@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 10:28:35 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/11 15:39:56 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,13 @@ int	main(int argc, char **argv)
 	if (get_textures(fd, &(data).map.textures) == false)
 		return (close(fd), 0);
 	if (get_map(fd, &(data).map) == false)
-		return (close(fd), free_textures(&(data).map.textures), 0);
+		return (close(fd), 0);
 	if (check_textures(&(data).map.textures) == false)
 		return (free_map_textures(&(data).map, &(data).map.textures), 0);
 	if (check_map(&(data).map, &(data).player) == false)
 		return (free_map_textures(&(data).map, &(data).map.textures), 0);
 	if (init_mlx(&data) == false)
 		return (free_map_textures(&(data).map, &(data).map.textures), 0);
-	// A EFFACER
-	print_textures_str(data.map.textures);
-	print_rgbs(data.map.textures);
-	print_map(data.map, data.player);
-	// A EFFACER
 	mlx_hook(data.mlx.window, 2, 1, key_input, &data);
 	mlx_hook(data.mlx.window, 17, 0, mlx_loop_end, data.mlx.mlx);
 	mlx_loop_hook(data.mlx.mlx, next_frame, &data);
@@ -60,3 +55,4 @@ int	main(int argc, char **argv)
 	free_map_textures(&(data).map, &(data).map.textures);
 	printf("no issue whatsoever\n");
 }
+

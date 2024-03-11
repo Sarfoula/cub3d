@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:28:12 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/14 12:59:27 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:41:42 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ bool	check_textures(t_textures *textures)
 {
 	if (check_all_filepath(textures) == false)
 		return (false);
+	xpm_to_rgb(&textures->north);
 	if (check_all_rgb(textures) == false)
 		return (false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:00 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 13:37:44 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/11 15:55:36 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,17 @@ void	fill_xpm_rgb(t_cardinal *xpm, t_color_table *table)
 	char	*line;
 
 	malloc_xpm_rgb(xpm);
-	line = get_next_line(xpm->fd);
 	i = 0;
 	while (i < xpm->height)
 	{
 		j = 0;
-		//printf("--- line = %d ---\n", i);
+		line = get_next_line(xpm->fd);
 		while (j < xpm->width)
 		{
 			xpm->rgb[i][j] = find_color_rgb_int(table, line[j + 1]);
-			//printf("char %c rgb %d\n", line[j + 1], xpm->rgb[i][j]);
 			j++;
 		}
 		free(line);
-		line = get_next_line(xpm->fd);
 		i++;
 	}
-	free(line);
 }
