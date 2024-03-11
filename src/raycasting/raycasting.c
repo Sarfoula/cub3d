@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/11 16:01:59 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/11 16:38:44 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int raycast(t_data *data, t_ray *ray, int x)
 void raycasting(t_data *data)
 {
 	int		lineHeight;
+	int		color;
+	int		cardinals;
 	int		drawStart;
 	int		drawEnd;
 	t_ray	*ray;
@@ -104,16 +106,27 @@ void raycasting(t_data *data)
 
 		double wallX;							//Wich X was hit of the wall (X n'est pas ortho norme mais simplement le x de largeur mur)
 		if (ray->side == 0)
+		{
+			cardinals = 1;
 			wallX = data->player.posY + ray->perpWallDist * ray->rayDirY;
+		}
 		else
+		{
+			cardinals = 3;
 			wallX = data->player.posX + ray->perpWallDist * ray->rayDirX;
+		}
 		wallX -= floor(wallX);
-
 		int texX = (int)(wallX * (double)texWidth);		//X coordinate of the textures
 		if (ray->side == 0 && ray->rayDirX > 0)
+		{
+			cardinals = 2;
 			texX = texWidth - texX - 1;
+		}
 		if (ray->side == 1 && ray->rayDirY < 0)
+		{
+			cardinals = 4;
 			texX = texWidth - texX - 1;
+		}
 
 		double step = 1.0 * texHeight / lineHeight;		//how much to increase the texture coordinate per screen pixel
 		double texPos = (drawStart - screenheight / 2 + lineHeight / 2) * step;
@@ -121,7 +134,14 @@ void raycasting(t_data *data)
 		{
 			int texY = (int)texPos & (texHeight - 1);
 			texPos += step;
-			int color = data->map.textures.north.rgb[texY][texX];
+			if (cardinals == 1)
+				color = data->map.textures.north.rgb[texY][texX];
+			else if (cardinals == 2)
+				color = data->map.textures.south.rgb[texY][texX];
+			else if (cardinals == 3)
+				color = data->map.textures.east.rgb[texY][texX];
+			else
+				color = data->map.textures.west.rgb[texY][texX];
 			my_mlx_pixel_put(data->mlx.img, x, y, color);
 		}
 	}

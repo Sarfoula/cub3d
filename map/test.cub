@@ -1,7 +1,7 @@
 NO ./textures/eagle.xpm
-SO ./textures/eagle.xpm
-WE ./textures/eagle.xpm
-EA ./textures/eagle.xpm
+SO ./textures/greystone.xpm
+WE ./textures/redbrick.xpm
+EA ./textures/wood.xpm
 
 F 220,100,255
 C 0,0,0
@@ -10,7 +10,7 @@ C 0,0,0
 1000100001
 1000000001
 1000000011
-1000E00001
+1000N00001
 1000000011
 1000000001
 1010000101
