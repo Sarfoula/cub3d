@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:24:44 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/07 14:07:15 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/12 17:42:20 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_input(int key, t_data *data)
 {
 	double moveSpeed = 0.3;
-	double rotSpeed = 0.05;
+	double rotSpeed = 0.08;
 
 	if (key == 65307)
 		mlx_loop_end(data->mlx.mlx);
@@ -71,9 +71,6 @@ int	key_input(int key, t_data *data)
 			data->map.minimap = 1;
 		else
 			data->map.minimap = 0;
-		// printf("posX = %f posY = %f\n", data->player.posX, data->player.posY);
-		// printf("dirX = %f dirY = %f\n\n", data->player.dirX, data->player.dirY);
-		// printf("x%f y%f\n\n", data->player.planeX, data->player.planeY);
 	}
 	return (0);
 }

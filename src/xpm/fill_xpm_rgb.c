@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:00 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/11 15:55:36 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/12 14:40:02 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	malloc_xpm_rgb(t_cardinal *xpm)
 	i = 0;
 	while (i < xpm->height)
 	{
-		xpm->rgb[i] = malloc(sizeof(int) * xpm->width + 1);
+		xpm->rgb[i] = malloc(sizeof(int) * xpm->width);
 		i++;
 	}
 }

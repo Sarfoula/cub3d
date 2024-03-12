@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:27:45 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/11 15:51:28 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/12 14:40:33 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	free_rgb(t_cardinal tex)
 void	free_xpm_rgb(t_textures *textures)
 {
 	free_rgb(textures->north);
-	// free_rgb(textures->south);
-	// free_rgb(textures->east);
-	// free_rgb(textures->west);
+	free_rgb(textures->south);
+	free_rgb(textures->east);
+	free_rgb(textures->west);
+	get_next_line(-2);
 }

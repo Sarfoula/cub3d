@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/11 16:38:44 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/12 17:08:46 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void init_ray(t_ray *ray, t_player player, int x)
 {
-	ray->mapX = (int)player.posX;		//represents current pos
-	ray->mapY = (int)player.posY;		//of ray in the map[][]
-	ray->cameraX = 2 * x / (double)screenwidth - 1;		//X-coordinate represents on screen
-	ray->rayDirY = player.dirY + player.planeY * ray->cameraX;	//ray = dir of vision + (camera plan * cameraX) --> rotate dir by certain angle
-	ray->rayDirX = player.dirX + player.planeX * ray->cameraX;	//Vector direction of
-	ray->deltaDistX = (ray->rayDirX == 0) ? 1e30 : fabs(1 / ray->rayDirX);	//Distance to next border-line
-	ray->deltaDistY = (ray->rayDirY == 0) ? 1e30 : fabs(1 / ray->rayDirY);	//from a border-line
+	ray->mapX = (int)player.posX;							//represents current pos
+	ray->mapY = (int)player.posY;							//of ray in the map[][]
+	ray->cameraX = 2 * x / (double)screenwidth - 1;					//X-coordinate represents on screen
+	ray->rayDirY = player.dirY + player.planeY * ray->cameraX;				//ray = dir of vision + (camera plan * cameraX) --> rotate dir by certain angle
+	ray->rayDirX = player.dirX + player.planeX * ray->cameraX;				//Vector direction of
+	ray->deltaDistX = (ray->rayDirX == 0) ? 1e30 : fabs(1 / ray->rayDirX);		//Distance to next border-line
+	ray->deltaDistY = (ray->rayDirY == 0) ? 1e30 : fabs(1 / ray->rayDirY);		//from a border-line
 	if (ray->rayDirX < 0)
 	{
 		ray->stepX = -1;

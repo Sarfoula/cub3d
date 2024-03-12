@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:45:56 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 15:26:11 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/12 17:02:14 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	update_spawn_info(t_map *map, t_player *player, int i, int j, int *p
 	char	c;
 
 	c = map->str_rectangle[i][j];
-	player->posX = j + 0.5;
-	player->posY = i + 0.5;
+	player->posX = i + 0.3;
+	player->posY = j + 0.3;
 	if (c == 'N')
 	{
 		player->dirX = -1;

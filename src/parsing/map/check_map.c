@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/04 16:40:59 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/12 17:04:38 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ static bool	check_spawn_location(t_map *map, t_player *player)
 
 	x = player->posX;
 	y = player->posY;
-	if (x == 0 || y == 0 || y + 1 == map->nbr_line)
+	if (x == 0 || y == 0 || y == map->nbr_line || x == map->nbr_column)
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);
 		return (false);
 	}
-	if (map->str_rectangle[y - 1][x] == NOTHING \
-	|| map->str_rectangle[y + 1][x] == NOTHING \
-	|| map->str_rectangle[y][x - 1] == NOTHING \
-	|| map->str_rectangle[y][x + 1] == NOTHING \
-	|| map->str_rectangle[y][x + 1] == '\0')
+	if (map->str_rectangle[x - 1][y] == NOTHING \
+	|| map->str_rectangle[x + 1][y] == NOTHING \
+	|| map->str_rectangle[x][y - 1] == NOTHING \
+	|| map->str_rectangle[x][y + 1] == NOTHING \
+	|| map->str_rectangle[x + 1][y] == '\0')
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);
 		return (false);

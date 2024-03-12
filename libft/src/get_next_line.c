@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:42:28 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/10 18:26:39 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:38:04 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*fill_buffer(char *buffer, char *temp)
 	return (ret);
 }
 
-/* 
+/*
 This function fills a buffer with the actual content of the file.
 */
 static char	*read_file(char *buffer, int fd)
@@ -81,7 +81,7 @@ static char	*ft_get_line(char *buffer)
 }
 
 /*
-Modify the buffer to suppress the line we already processed 
+Modify the buffer to suppress the line we already processed
 when the function is called multiple times,
 which is always the first line.
 */
@@ -117,6 +117,8 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
+	if (fd == -2)
+		free(buffer);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buffer = read_file(buffer, fd);
