@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:02:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/11 12:03:03 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:37:16 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static bool	three_rgb_number(char **rgb)
 /**
  * fill the rgb values in the t_rgb structure
  * then check if these values are valid (between 0 and 255)
+ * We also add a strlen check so that we don't face issues with int overflows
  * @return true if the values are valid
  * @return false is the value are invalid
 */
@@ -58,7 +59,9 @@ static bool	fill_rgb_values(t_rgb *texture, char **rgb)
 	texture->red = ft_atoi(rgb[0]);
 	texture->green = ft_atoi(rgb[1]);
 	texture->blue = ft_atoi(rgb[2]);
-	//check that the input is less than an int ?
+	if (ft_strlen(rgb[0]) >= 5 || ft_strlen(rgb[1]) >= 5 \
+	|| ft_strlen(rgb[2]) >= 5)
+		return (false);
 	if (texture->red > 255 || texture->green > 255 || texture->blue > 255)
 		return (false);
 	if (texture->red < 0 || texture->green < 0 || texture->blue < 0)
