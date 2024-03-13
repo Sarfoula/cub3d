@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_rgb.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:27:45 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/12 14:40:33 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/13 12:52:50 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	free_rgb(t_cardinal tex)
 {
 	int	i;
 
-	for (i = 0; i < tex.width; i++)
+	i = 0;
+	while (i < tex.width)
+	{
 		free(tex.rgb[i]);
+		i++;
+	}
 	free(tex.rgb);
 }
 
