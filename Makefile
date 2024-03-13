@@ -14,7 +14,7 @@ HEADERS        := $(addprefix $(INC_DIR), $(INC))
 
 ### PARSING ###
 PARSING			:=	textures/check_input.c textures/get_textures.c textures/check_textures.c textures/check_rgb.c textures/check_filepath.c textures/fill_textures.c\
-					map/get_map.c map/check_map.c map/check_map_char.c map/make_map_rectangular.c map/check_map_closed.c\
+					map/get_map.c map/check_map.c map/check_map_char.c map/make_map_rectangular.c map/check_map_closed.c map/update_spawn_info.c\
 					skip_empty_lines.c
 
 PARSING_DIR		:=	parsing/

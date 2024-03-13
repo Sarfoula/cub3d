@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 13:20:35 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/13 13:07:16 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ bool	check_map_char(t_map *map, t_player *player);
 bool	is_player(char c);
 void	make_map_rectangular(t_map *map);
 bool	check_map_closed(t_map *map, char **map_rectangle);
+void	update_spawn_info(t_map *map, t_player *player, int i, int j);
 
 /********************************************************
   					XPM
