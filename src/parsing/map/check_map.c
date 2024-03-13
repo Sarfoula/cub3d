@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:50:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/12 17:04:38 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/13 15:30:26 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static bool	check_spawn_location(t_map *map, t_player *player)
 	int	x;
 	int	y;
 
-	x = player->posX;
-	y = player->posY;
+	x = player->posx;
+	y = player->posy;
 	if (x == 0 || y == 0 || y == map->nbr_line || x == map->nbr_column)
 	{
 		ft_printf(2, ERR_MAP_SPAWN_LOC);

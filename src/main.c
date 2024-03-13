@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/12 17:49:17 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/13 18:13:06 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	free_map_textures(t_map *map, t_textures *textures)
 
 int	next_frame(t_data *data)
 {
-	ft_memset(data->mlx.img.addr, 0, screenheight * data->mlx.img.line_len);
-	raycasting(data);
+	ft_memset(data->mlx.img.addr, 0, HEIGHT * data->mlx.img.line_len);
+	raycasting(data, &(data)->ray, data->map.textures.ceiling.color, \
+		data->map.textures.floor.color);
 	if (data->map.minimap == 1)
 		minimap(data);
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, data->mlx.img.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, \
+												data->mlx.img.img, 0, 0);
 	return (0);
 }
 
@@ -53,6 +55,4 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx.mlx);
 	free_mlx(data.mlx);
 	free_map_textures(&(data).map, &(data).map.textures);
-	printf("no issue whatsoever\n");
 }
-

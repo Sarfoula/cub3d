@@ -1,7 +1,7 @@
 NO ./textures/eagle.xpm
 SO ./textures/greystone.xpm
 WE ./textures/redbrick.xpm
-EA ./textures/wood.
+EA ./textures/wood.xpm
 
 F 220,100,0
 C 245,30,0

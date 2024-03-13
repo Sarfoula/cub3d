@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_spawn_info.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:57:17 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/13 13:07:06 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:30:56 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 static void	spawn_north(t_player *player)
 {
-	player->dirX = -1;
-	player->dirY = 0;
-	player->planeX = 0;
-	player->planeY = 0.66;
+	player->dirx = -1;
+	player->diry = 0;
+	player->planex = 0;
+	player->planey = 0.66;
 }
 
 static void	spawn_south(t_player *player)
 {
-	player->dirX = 1;
-	player->dirY = 0;
-	player->planeX = 0;
-	player->planeY = -0.66;
+	player->dirx = 1;
+	player->diry = 0;
+	player->planex = 0;
+	player->planey = -0.66;
 }
 
 static void	spawn_east(t_player *player)
 {
-	player->dirX = 0;
-	player->dirY = 1;
-	player->planeX = 0.66;
-	player->planeY = 0;
+	player->dirx = 0;
+	player->diry = 1;
+	player->planex = 0.66;
+	player->planey = 0;
 }
 
 static void	spawn_west(t_player *player)
 {
-	player->dirX = 0;
-	player->dirY = -1;
-	player->planeX = -0.66;
-	player->planeY = 0;
+	player->dirx = 0;
+	player->diry = -1;
+	player->planex = -0.66;
+	player->planey = 0;
 }
 
 void	update_spawn_info(t_map *map, t_player *player, int i, int j)
@@ -49,8 +49,8 @@ void	update_spawn_info(t_map *map, t_player *player, int i, int j)
 	char	c;
 
 	c = map->str_rectangle[i][j];
-	player->posX = i + 0.3;
-	player->posY = j + 0.3;
+	player->posx = i + 0.3;
+	player->posy = j + 0.3;
 	if (c == 'N')
 		spawn_north(player);
 	else if (c == 'S')

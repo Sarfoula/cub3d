@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/13 13:07:16 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:28:11 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D__H
 # define CUB3D__H
 
-#include <math.h>
-#include <fcntl.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdbool.h>
+# include <math.h>
+# include <fcntl.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdbool.h>
 
-#include "../libft/inc/libft.h"
-#include "../libft/inc/ft_printf.h"
-#include "../minilibx-linux/mlx.h"
+# include "../libft/inc/libft.h"
+# include "../libft/inc/ft_printf.h"
+# include "../minilibx-linux/mlx.h"
 
 /**
  * XPM INFOS RECOVERED ?
@@ -50,7 +50,8 @@
 # define ERR_RGB_NBR "Error: RGB code is invalid in '%s'\n"
 
 # define ERR_TEXTURES_NBR "Error: Cub3d couldn't get 6 ligns to read textures\n"
-# define ERR_TEXTURES_CONTENT "Error: One of the six first ligns contains an unknown identifier or has a duplicate\n"
+# define ERR_TEXTURES_CONTENT "Error: One of the six first ligns contains an \
+	unknown identifier or has a duplicate\n"
 # define ERR_TEXTURES_XPM "Error: the file '%s' isn't a .xpm file\n"
 
 # define ERR_XPM_EMPTY "Error: the file '%s' is empty\n"
@@ -60,10 +61,10 @@
 */
 # define NOTHING 'x'
 
-# define screenwidth 1920
-# define screenheight 1080
-# define texWidth 64
-# define texHeight 64
+# define WIDTH 1920
+# define HEIGHT 1080
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
 
 /**
  * Textures structure
@@ -99,30 +100,33 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-	double	dirX;
-	double	dirY;
-	double	posX;
-	double	posY;
-	double	planeX;
-	double	planeY;
+	double	dirx;
+	double	diry;
+	double	posx;
+	double	posy;
+	double	planex;
+	double	planey;
 }	t_player;
 
 typedef struct s_ray
 {
-	int		mapX;			//represents current pos
-	int		mapY;			//of ray in the map[][]
-	int		side;			//was a NS or a EW wall hit?
-	int		stepX;			//left = -1/ right = +1
-	int		stepY;
+	int		mapx;
+	int		mapy;
+	int		side;
+	int		stepx;
+	int		stepy;
 	int		color;
-	double	cameraX;		//X-coordinate represents on screen
-	double	rayDirY;		//ray = dir of vision + (camera plan * cameraX) --> rotate dir by certain angle
-	double	rayDirX;		//Vector direction of
-	double	deltaDistX;		//Distance to next border-line
-	double	deltaDistY;		//from a border-line
-	double	sideDistX;		//Distance to next border-line
-	double	sideDistY;		//from current pos
-	double	perpWallDist;	//length of ray from camera plane --> not player pos because fisheye effect
+	int		drawEnd;
+	int		drawStart;
+	int		lineheight;
+	double	camerax;
+	double	raydiry;
+	double	raydirx;
+	double	deltadisty;
+	double	deltadistx;
+	double	sidedistx;
+	double	sidedisty;
+	double	perpwalldist;
 }	t_ray;
 
 typedef struct s_map
@@ -154,14 +158,13 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-	int			textures[8][texWidth * texHeight];
 	t_mlx		mlx;
 	t_map		map;
 	t_ray		ray;
 	t_player	player;
 }	t_data;
 
-typedef struct	s_color_table
+typedef struct s_color_table
 {
 	char	c;
 	int		rgb;
@@ -172,6 +175,12 @@ typedef struct	s_color_table
 	int		green;
 	int		blue;
 }	t_color_table;
+
+typedef struct s_point
+{
+	int x;
+	int y;
+}		t_point;
 
 /********************************************************
 					Debug
@@ -192,7 +201,7 @@ void			remove_backslash_n(char **str);
 bool			ft_strstr_last(char *str, char *to_find);
 int				countchar(char *str, char c);
 int				ft_atoi_base(char *str, char *base);
-char		*ft_strtrim_ending(char const *s1, char const *set);
+char			*ft_strtrim_ending(char const *s1, char const *set);
 
 /********************************************************
 					Cleaning
@@ -208,7 +217,7 @@ void			free_xpm_rgb(t_textures *textures);
 /********************************************************
 					Input checking
 *********************************************************/
-bool	input_ok(int argc, char **argv, int *fd);
+bool			input_ok(int argc, char **argv, int *fd);
 
 /********************************************************
 					Parsing
@@ -217,32 +226,32 @@ bool	input_ok(int argc, char **argv, int *fd);
 char			*skip_empty_lines(int fd);
 
 //	--- Textures ---
-bool	get_textures(int fd, t_textures *textures);
-bool	fill_textures(t_textures *textures, char **textures_info);
-bool	check_textures(t_textures *textures);
-bool	check_filepath(t_cardinal *cardinal);
-bool	check_rgb(t_rgb *texture);
-bool	is_cardinal(char *str, char *cardinal);
-bool	is_north(char *str);
-bool	is_south(char *str);
-bool	is_east(char *str);
-bool	is_west(char *str);
-bool	is_floor(char *str);
-bool	is_ceiling(char *str);
+bool			get_textures(int fd, t_textures *textures);
+bool			fill_textures(t_textures *textures, char **textures_info);
+bool			check_textures(t_textures *textures);
+bool			check_filepath(t_cardinal *cardinal);
+bool			check_rgb(t_rgb *texture);
+bool			is_cardinal(char *str, char *cardinal);
+bool			is_north(char *str);
+bool			is_south(char *str);
+bool			is_east(char *str);
+bool			is_west(char *str);
+bool			is_floor(char *str);
+bool			is_ceiling(char *str);
 
 //	---	Map	---
-bool	get_map(int fd, t_map *map);
-bool	check_map(t_map *map, t_player *player);
-bool	check_map_char(t_map *map, t_player *player);
-bool	is_player(char c);
-void	make_map_rectangular(t_map *map);
-bool	check_map_closed(t_map *map, char **map_rectangle);
-void	update_spawn_info(t_map *map, t_player *player, int i, int j);
+bool			get_map(int fd, t_map *map);
+bool			check_map(t_map *map, t_player *player);
+bool			check_map_char(t_map *map, t_player *player);
+bool			is_player(char c);
+void			make_map_rectangular(t_map *map);
+bool			check_map_closed(t_map *map, char **map_rectangle);
+void			update_spawn_info(t_map *map, t_player *player, int i, int j);
 
 /********************************************************
-  					XPM
+					XPM
 *********************************************************/
-int    			rgb_to_int(char *str);
+int				rgb_to_int(char *str);
 int				get_xpm_infos(t_cardinal *xpm);
 int				*xpm_to_rgb(t_cardinal *xpm);
 t_color_table	*get_color_table(t_cardinal *xpm);
@@ -251,12 +260,12 @@ void			fill_xpm_rgb(t_cardinal *xpm, t_color_table *table);
 /********************************************************
 					MLX
 *********************************************************/
-bool	init_mlx(t_data *data);
-int		key_input(int key, t_data *data);
-void	raycasting(t_data *data);
-void	trace(t_image img, int x1, int y1, int x2, int y2, int color);
-int		my_mlx_pixel_put(t_image img, int x, int y, int color);
-void	free_mlx(t_mlx mlx);
-void	minimap(t_data *data);
+bool			init_mlx(t_data *data);
+int				key_input(int key, t_data *data);
+int				my_pixel_put(t_image img, int x, int y, int color);
+void			free_mlx(t_mlx mlx);
+void			minimap(t_data *data);
+void			trace(t_image img, int x, int y1, int y2, int color);
+void			raycasting(t_data *data, t_ray *ray, int ceiling, int floor);
 
 #endif
