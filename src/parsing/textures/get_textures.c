@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/11 16:01:45 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/13 14:12:49 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ static void	init_textures(t_textures *textures)
 {
 	textures->north.cardinal_str = NULL;
 	textures->north.fd = -1;
+	textures->north.rgb = NULL;
 	textures->south.cardinal_str = NULL;
 	textures->south.fd = -1;
+	textures->south.rgb = NULL;
 	textures->east.cardinal_str = NULL;
 	textures->east.fd = -1;
+	textures->east.rgb = NULL;
 	textures->west.cardinal_str = NULL;
 	textures->west.fd = -1;
+	textures->west.rgb = NULL;
 	textures->floor.rgb_str = NULL;
 	textures->ceiling.rgb_str = NULL;
 	textures->floor.red = -1;

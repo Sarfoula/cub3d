@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:27:45 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/13 12:52:50 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:11:53 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_rgb(t_cardinal tex)
 	int	i;
 
 	i = 0;
+	if (!tex.rgb)
+		return ;
 	while (i < tex.width)
 	{
 		free(tex.rgb[i]);
