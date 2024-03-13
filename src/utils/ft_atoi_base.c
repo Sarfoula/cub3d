@@ -6,13 +6,13 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:45:33 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/05 13:53:26 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:50:48 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_atoi_base_error(char *base)
+static int	ft_atoi_base_error(char *base)
 {
 	int	i;
 	int	j;
@@ -27,18 +27,16 @@ int		ft_atoi_base_error(char *base)
 				return (0);
 			j++;
 		}
-		if (base[i] == ' ' || base[i] == '\f' || base[i] == '\n' ||
-				base[i] == '\r' || base[i] == '\t' || base[i] == '\v' ||
-				base[i] == '-' || base[i] == '+')
+		if (ft_isspace(base[i]) || base[i] == '-' || base[i] == '+')
 			return (0);
 		i++;
 	}
 	return (i);
 }
 
-int		ft_atoi_base_test(char str, char *base)
+static int	ft_atoi_base_test(char str, char *base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (base[i])
@@ -50,27 +48,26 @@ int		ft_atoi_base_test(char str, char *base)
 	return (-1);
 }
 
-int		ft_atoi_base_search(char *str, int *i)
+static int	get_sign(char *str, int *i)
 {
-	int mult;
+	int	sign;
 
-	mult = 1;
-	while (str[*i] == ' ' || str[*i] == '\f' || str[*i] == '\n' ||
-		str[*i] == '\r' || str[*i] == '\t' || str[*i] == '\v')
+	sign = 1;
+	while (ft_isspace(str[*i]))
 		*i += 1;
 	while (str[*i] == '-' || str[*i] == '+')
 	{
 		if (str[*i] == '-')
-			mult *= -1;
+			sign *= -1;
 		*i += 1;
 	}
-	return (mult);
+	return (sign);
 }
 
-int		ft_atoi_base(char *str, char *base)
+int	ft_atoi_base(char *str, char *base)
 {
 	int		i;
-	int		mult;
+	int		sign;
 	int		nb;
 	int		tmp;
 	int		len;
@@ -80,7 +77,7 @@ int		ft_atoi_base(char *str, char *base)
 	len = ft_atoi_base_error(base);
 	if (len >= 2)
 	{
-		mult = ft_atoi_base_search(str, &i);
+		sign = get_sign(str, &i);
 		tmp = ft_atoi_base_test(str[i], base);
 		while (tmp != -1)
 		{
@@ -88,7 +85,7 @@ int		ft_atoi_base(char *str, char *base)
 			i++;
 			tmp = ft_atoi_base_test(str[i], base);
 		}
-		return (nb *= mult);
+		return (nb *= sign);
 	}
 	return (0);
 }

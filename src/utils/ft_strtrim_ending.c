@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:18:14 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 15:25:03 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:42:04 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ char	*ft_strtrim_ending(char const *s1, char const *set)
 	ret[i] = 0;
 	return (ret);
 }
-
