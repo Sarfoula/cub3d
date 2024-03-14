@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 11:43:19 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:18:55 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void	free_map_textures(t_map *map, t_textures *textures)
 int	next_frame(t_data *data)
 {
 	ft_memset(data->mlx.img.addr, 0, HEIGHT * data->mlx.img.line_len);
-	raycasting(data, &(data)->ray, data->map.textures.ceiling.color, \
-		data->map.textures.floor.color);
+	raycasting(data, &(data)->ray);
 	if (data->map.minimap == 1)
 		minimap(data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, \
-												data->mlx.img.img, 0, 0);
+		data->mlx.img.img, 0, 0);
 	return (0);
 }
 

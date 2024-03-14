@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_table.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:49:28 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/06 15:05:51 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:10:01 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static t_color_table	*malloc_color_table(t_color_table *color_table, int nb_of_colors)
+static t_color_table	*malloc_color_table(t_color_table \
+	*color_table, int nb_of_colors)
 {
 	int	i;
 
@@ -31,37 +32,45 @@ static t_color_table	*malloc_color_table(t_color_table *color_table, int nb_of_c
  * Treat the case :
  * "[char] c #[six_digit_hex_code]"
 */
+
 static void	copy_with_hashtag(t_color_table *color_table, char *line, int i)
 {
 	ft_strlcpy(color_table[i].red_hex, line + 6, 3);
-	color_table[i].red = ft_atoi_base(color_table[i].red_hex, "0123456789ABCDEF");
+	color_table[i].red = ft_atoi_base(color_table[i].red_hex, \
+		"0123456789ABCDEF");
 	ft_strlcpy(color_table[i].green_hex, line + 8, 3);
-	color_table[i].green = ft_atoi_base(color_table[i].green_hex, "0123456789ABCDEF");
+	color_table[i].green = ft_atoi_base(color_table[i].green_hex, \
+		"0123456789ABCDEF");
 	ft_strlcpy(color_table[i].blue_hex, line + 10, 3);
-	color_table[i].blue = ft_atoi_base(color_table[i].blue_hex, "0123456789ABCDEF");
+	color_table[i].blue = ft_atoi_base(color_table[i].blue_hex, \
+		"0123456789ABCDEF");
 }
 
 /*
- *	Treat the case : 
+ *	Treat the case :
  *	"[char] c gray[two_digit_hex_code]"
 */
 static void	copy_gray(t_color_table *color_table, char *line, int i)
 {
 	ft_strlcpy(color_table[i].red_hex, line + 9, 3);
-	color_table[i].red = ft_atoi_base(color_table[i].red_hex, "0123456789ABCDEF");
+	color_table[i].red = ft_atoi_base(color_table[i].red_hex, \
+		"0123456789ABCDEF");
 	ft_strlcpy(color_table[i].green_hex, line + 9, 3);
-	color_table[i].green = ft_atoi_base(color_table[i].green_hex, "0123456789ABCDEF");
+	color_table[i].green = ft_atoi_base(color_table[i].green_hex, \
+		"0123456789ABCDEF");
 	ft_strlcpy(color_table[i].blue_hex, line + 9, 3);
-	color_table[i].blue = ft_atoi_base(color_table[i].blue_hex, "0123456789ABCDEF");
+	color_table[i].blue = ft_atoi_base(color_table[i].blue_hex, \
+		"0123456789ABCDEF");
 }
 
 /**
- * An xpm file line looks like that : 
+ * An xpm file line looks like that :
  * "[char] c #[six_digit_hex_code]"
  * OR
  * "[char] c gray[two_digit_hex_code]"
 */
-static t_color_table	*fill_color_table(t_cardinal *xpm, t_color_table *color_table)
+static t_color_table	*fill_color_table(t_cardinal *xpm, \
+	t_color_table *color_table)
 {
 	char	*line;
 	int		i;
@@ -78,7 +87,8 @@ static t_color_table	*fill_color_table(t_cardinal *xpm, t_color_table *color_tab
 			copy_with_hashtag(color_table, line, i);
 		else
 			copy_gray(color_table, line, i);
-		color_table[i].rgb = (color_table[i].red << 16) | (color_table[i].green << 8) | (color_table[i].green);
+		color_table[i].rgb = (color_table[i].red << 16) | \
+				(color_table[i].green << 8) | (color_table[i].green);
 		free(line);
 		line = get_next_line(xpm->fd);
 		i++;
@@ -88,10 +98,10 @@ static t_color_table	*fill_color_table(t_cardinal *xpm, t_color_table *color_tab
 }
 
 /**
- * Get the color table from the xpm file : 
+ * Get the color table from the xpm file :
  * - We associate each char with an rgb code
 */
-t_color_table *get_color_table(t_cardinal *xpm)
+t_color_table	*get_color_table(t_cardinal *xpm)
 {
 	int					infos;
 	t_color_table		*color_table;

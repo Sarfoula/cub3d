@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:34:02 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/14 00:29:20 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:18:18 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ int	my_pixel_put(t_image img, int x, int y, int color)
 	return (0);
 }
 
-void	trace(t_image img, int x, int y1, int y2, int color)
+void	trace(t_data *data, int x, int y1, int y2)
 {
+	int	color;
+
+	if (y1 == 0)
+		color = data->map.textures.ceiling.color;
+	else
+		color = data->map.textures.floor.color;
 	while (y1 < y2)
 	{
-		my_pixel_put(img, x, y1, color);
+		my_pixel_put(data->mlx.img, x, y1, color);
 		y1++;
 	}
 }

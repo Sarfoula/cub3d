@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/14 11:52:41 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:18:29 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	textures(t_data *data, double *texpos, double step)
 		return (data->map.textures.west.rgb[texy][texx]);
 }
 
-void	raycasting(t_data *data, t_ray *ray, int ceiling, int floor)
+void	raycasting(t_data *data, t_ray *ray)
 {
 	int		x;
 	int		y;
@@ -128,13 +128,12 @@ void	raycasting(t_data *data, t_ray *ray, int ceiling, int floor)
 		if (ray->drawStart < 0)
 			ray->drawStart = 0;
 		else
-			trace(data->mlx.img, x, 0, ray->drawStart, ceiling);
+			trace(data, x, 0, ray->drawStart);
 		ray->drawEnd = HEIGHT / 2 + ray->lineheight / 2;
 		if (ray->drawEnd >= HEIGHT)
 			ray->drawEnd = HEIGHT - 1;
 		else
-			trace(data->mlx.img, x, ray->drawEnd, HEIGHT, floor);
-		printf("floor color %d\n", floor);
+			trace(data, x, ray->drawEnd, HEIGHT);
 		step = 1.0 * TEXHEIGHT / ray->lineheight;
 		texpos = (ray->drawStart - HEIGHT / 2 + ray->lineheight / 2) * step;
 		y = ray->drawStart - 1;

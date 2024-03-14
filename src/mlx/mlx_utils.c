@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:59:24 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/14 12:05:13 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:12:26 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ bool	init_mlx(t_data *data)
 	data->mlx.img.addr = mlx_get_data_addr(data->mlx.img.img, \
 		&data->mlx.img.bpp, &data->mlx.img.line_len, &data->mlx.img.endian);
 	data->map.textures.ceiling.color = \
-		rgb_to_int(data->map.textures.ceiling.red, data->map.textures.ceiling.green, \
-		data->map.textures.ceiling.blue);
+		rgb_to_int(data->map.textures.ceiling.red, \
+			data->map.textures.ceiling.green, data->map.textures.ceiling.blue);
 	data->map.textures.floor.color = \
-		rgb_to_int(data->map.textures.floor.red, data->map.textures.floor.green, \
-		data->map.textures.floor.blue);
+		rgb_to_int(data->map.textures.floor.red, \
+			data->map.textures.floor.green, data->map.textures.floor.blue);
 	return (true);
 }
 

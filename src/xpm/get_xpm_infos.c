@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_xpm_measures.c                                 :+:      :+:    :+:   */
+/*   get_xpm_infos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:26:36 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/04 16:38:20 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:11:22 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * get the following infos from the xpm file : 
+ * get the following infos from the xpm file :
  * - Width in pixel number
  * - Height in pixel number
  * - Number of different pixel colors
  * MEASURE = NUMBER OF PIXELS
 */
-int		get_xpm_infos(t_cardinal *xpm)
+int	get_xpm_infos(t_cardinal *xpm)
 {
 	char	*line;
 	char	**temp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 12:01:09 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:18:36 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ int				key_input(int key, t_data *data);
 int				my_pixel_put(t_image img, int x, int y, int color);
 void			free_mlx(t_mlx mlx);
 void			minimap(t_data *data);
-void			trace(t_image img, int x, int y1, int y2, int color);
-void			raycasting(t_data *data, t_ray *ray, int ceiling, int floor);
+void			trace(t_data *data, int x, int y1, int y2);
+void			raycasting(t_data *data, t_ray *ray);
 
 #endif

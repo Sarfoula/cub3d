@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:00 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/12 14:40:02 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:07:43 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	find_color_rgb_int(t_color_table *table, char c)
 	int	i;
 
 	i = 0;
-	while (table[i].c != c )
+	while (table[i].c != c)
 		i++;
 	return (table[i].rgb);
 }
@@ -37,7 +37,8 @@ static void	malloc_xpm_rgb(t_cardinal *xpm)
 }
 
 /**
- * fill an int ** replacing the char of the xpm by the corresponding rgb int value
+ * fill an int ** replacing the char of the xpm by the
+ * corresponding rgb int value
 */
 void	fill_xpm_rgb(t_cardinal *xpm, t_color_table *table)
 {
