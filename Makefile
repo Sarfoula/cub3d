@@ -32,10 +32,10 @@ OBJ            :=    $(SRC:%.c=$(OBJ_DIR)%.o)
 
 #Compiler
 CC            :=    cc
-CC_FLAGS      :=   -Wall -Wextra -Werror -g
+CC_FLAGS      :=   -Wall -Wextra -Werror
 
 
-all: libft $(MLX) ft_printf $(NAME)
+all: libft mlx ft_printf $(NAME)
 
 $(NAME): $(OBJ) $(FT_PRINTF) $(LIBFT) $(MLX)
 	$(CC) $(CC_FLAGS) $(OBJ) -L ./libft -lft -L ./minilibx-linux -lmlx -lXext -lX11 -lm -o $@
@@ -48,7 +48,7 @@ $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
 libft:
 	@make -C libft
 
-$(MLX):
+mlx:
 	@make -C $(MLX_DIR)
 
 clean: cleanlibft cleanmlx
