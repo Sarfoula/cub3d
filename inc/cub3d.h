@@ -6,12 +6,12 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 12:18:36 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:35:40 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D__H
-# define CUB3D__H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <math.h>
 # include <fcntl.h>
@@ -116,8 +116,8 @@ typedef struct s_ray
 	int		stepx;
 	int		stepy;
 	int		color;
-	int		drawEnd;
-	int		drawStart;
+	int		drawend;
+	int		drawstart;
 	int		lineheight;
 	double	camerax;
 	double	raydiry;
@@ -175,12 +175,6 @@ typedef struct s_color_table
 	int		green;
 	int		blue;
 }	t_color_table;
-
-typedef struct s_point
-{
-	int x;
-	int y;
-}		t_point;
 
 /********************************************************
 					Debug
@@ -265,7 +259,7 @@ bool			init_mlx(t_data *data);
 int				key_input(int key, t_data *data);
 int				my_pixel_put(t_image img, int x, int y, int color);
 void			free_mlx(t_mlx mlx);
-void			minimap(t_data *data);
+void			minimap(t_data data);
 void			trace(t_data *data, int x, int y1, int y2);
 void			raycasting(t_data *data, t_ray *ray);
 

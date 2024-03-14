@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 12:18:55 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:35:47 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	next_frame(t_data *data)
 	ft_memset(data->mlx.img.addr, 0, HEIGHT * data->mlx.img.line_len);
 	raycasting(data, &(data)->ray);
 	if (data->map.minimap == 1)
-		minimap(data);
+		minimap(*data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, \
 		data->mlx.img.img, 0, 0);
 	return (0);

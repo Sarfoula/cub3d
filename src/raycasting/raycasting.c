@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/14 12:18:29 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:37:20 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,20 +124,20 @@ void	raycasting(t_data *data, t_ray *ray)
 	while (x++ < WIDTH)
 	{
 		ray->lineheight = raycast(data, ray, x);
-		ray->drawStart = HEIGHT / 2 - ray->lineheight / 2;
-		if (ray->drawStart < 0)
-			ray->drawStart = 0;
+		ray->drawstart = HEIGHT / 2 - ray->lineheight / 2;
+		if (ray->drawstart < 0)
+			ray->drawstart = 0;
 		else
-			trace(data, x, 0, ray->drawStart);
-		ray->drawEnd = HEIGHT / 2 + ray->lineheight / 2;
-		if (ray->drawEnd >= HEIGHT)
-			ray->drawEnd = HEIGHT - 1;
+			trace(data, x, 0, ray->drawstart);
+		ray->drawend = HEIGHT / 2 + ray->lineheight / 2;
+		if (ray->drawend >= HEIGHT)
+			ray->drawend = HEIGHT - 1;
 		else
-			trace(data, x, ray->drawEnd, HEIGHT);
+			trace(data, x, ray->drawend, HEIGHT);
 		step = 1.0 * TEXHEIGHT / ray->lineheight;
-		texpos = (ray->drawStart - HEIGHT / 2 + ray->lineheight / 2) * step;
-		y = ray->drawStart - 1;
-		while (y++ < ray->drawEnd)
+		texpos = (ray->drawstart - HEIGHT / 2 + ray->lineheight / 2) * step;
+		y = ray->drawstart - 1;
+		while (y++ < ray->drawend)
 			my_pixel_put(data->mlx.img, x, y, textures(data, &texpos, step));
 	}
 }

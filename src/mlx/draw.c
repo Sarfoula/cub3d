@@ -6,7 +6,7 @@
 /*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:34:02 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/14 12:18:18 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:38:24 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	trace(t_data *data, int x, int y1, int y2)
 	}
 }
 
-void	square(t_data *data, int size, int x, int y, int color)
+void	square(t_data data, int size, int x, int y)
 {
 	int	i;
 	int	j;
@@ -49,36 +49,48 @@ void	square(t_data *data, int size, int x, int y, int color)
 		j = y;
 		while (j < y + size)
 		{
-			my_pixel_put(data->mlx.img, i, j, color);
+			my_pixel_put(data.mlx.img, i, j, data.ray.color);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	minimap(t_data *data)
+void	map(t_data data, int i, int j)
+{
+	data.ray.color = 0xf808080;
+	if (data.map.str_rectangle[i][j] != 'x')
+	{
+		square(data, 16, j * 16, i * 16);
+		if (data.map.str_rectangle[i][j] == '1')
+		{
+			data.ray.color = 0xfFFFFFF;
+			square(data, 15, j * 16, i * 16);
+		}
+		else
+		{
+			data.ray.color = 0xf000000;
+			square(data, 15, j * 16, i * 16);
+		}
+	}
+}
+
+void	minimap(t_data data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < data->map.nbr_line)
+	while (i < data.map.nbr_line)
 	{
 		j = 0;
-		while (j < data->map.nbr_column)
+		while (j < data.map.nbr_column)
 		{
-			if (data->map.str_rectangle[i][j] != 'x')
-			{
-				square(data, 16, j * 16, i * 16, 0xf808080);
-				if (data->map.str_rectangle[i][j] == '1')
-					square(data, 15, j * 16, i * 16, 0xfFFFFFF);
-				else
-					square(data, 15, j * 16, i * 16, 0xf000000);
-			}
+			map(data, i, j);
 			j++;
 		}
 		i++;
 	}
-	square(data, 5, data->player.posy * 16 - 3, \
-		data->player.posx * 16 - 3, 0xfFF0000);
+	data.ray.color = 0xfFF0000;
+	square(data, 5, data.player.posy * 16 - 3, data.player.posx * 16 - 3);
 }
