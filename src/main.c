@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:40 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/13 18:13:06 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 11:43:19 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	if (get_textures(fd, &(data).map.textures) == false)
 		return (close(fd), 0);
 	if (get_map(fd, &(data).map) == false)
-		return (close(fd), 0);
+		return (free_textures(&(data).map.textures), close(fd), 0);
 	if (check_textures(&(data).map.textures) == false)
 		return (free_map_textures(&(data).map, &(data).map.textures), 0);
 	if (check_map(&(data).map, &(data).player) == false)
