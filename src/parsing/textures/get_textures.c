@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:30:39 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 11:32:06 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:58:11 by yallo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ bool	get_textures(int fd, t_textures *textures)
 	textures_info = malloc(sizeof(char *) * 7);
 	textures_info[6] = NULL;
 	line_parsed = dup_six_lines(textures_info, fd);
-	remove_backslash_n(textures_info);
 	if (line_parsed < 6)
 	{
 		free_textures_info(line_parsed, textures_info);
 		finish_reading_file(fd);
 		return (ft_printf(2, ERR_TEXTURES_NBR), false);
 	}
+	remove_backslash_n(textures_info);
 	if (fill_textures(textures, textures_info) == false)
 	{
 		free_textures_info(line_parsed, textures_info);
