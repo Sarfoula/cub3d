@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:33:23 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/14 12:57:19 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:42:41 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	input_ok(int argc, char **argv, int *fd)
 	*fd = open(argv[1], O_RDONLY);
 	if (*fd == -1)
 	{
-		ft_printf(2, "file : '%s'\n", argv[1]);
+		ft_printf(2, "Error\nfile : '%s'\n", argv[1]);
 		return (perror(ERR_OPEN), 0);
 	}
 	return (true);

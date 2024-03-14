@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:07:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/02/19 13:30:00 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:42:54 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static bool	get_check_fd(t_cardinal *cardinal)
 	fd = open(cardinal->cardinal_str, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf(2, "file : '%s'\n", cardinal->cardinal_str);
+		ft_printf(2, "Error\nfile : '%s'\n", cardinal->cardinal_str);
 		perror(ERR_OPEN);
 		return (false);
 	}

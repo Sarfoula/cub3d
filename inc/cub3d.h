@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 12:35:40 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 15:41:58 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,29 @@
 /**
  * ERROR MESSAGES
 */
-# define INP_USAGE "[usage] : ./cub3d <file.cub>\n"
-# define INP_FILENAME "File must be a .cub file\n"
+# define INP_USAGE "Error\n[usage] : ./cub3d <file.cub>\n"
+# define INP_FILENAME "Error\nFile must be a .cub file\n"
 
-# define ERR_FILEPATH_CONTENT "Error: there is no filepath in '%s'\n"
+# define ERR_FILEPATH_CONTENT "Error\nThere is no filepath in '%s'\n"
 
-# define ERR_MAP_CHAR "Error: invalid char '%c' in map\n"
-# define ERR_MAP_CLOSED "Error: the map isn't closed\n"
-# define ERR_MAP_EMPTY "Error: the map contains empty lines\n"
-# define ERR_MAP_NULL "Error: there is no map\n"
-# define ERR_MAP_SPAWN_NBR "Error: invalid number of spawns\n"
-# define ERR_MAP_SPAWN_LOC "Error: spawn in invalid location\n"
+# define ERR_MAP_CHAR "Error\nInvalid char '%c' in map\n"
+# define ERR_MAP_CLOSED "Error\nThe map isn't closed\n"
+# define ERR_MAP_EMPTY "Error\nThe map contains empty lines\n"
+# define ERR_MAP_NULL "Error\nThere is no map\n"
+# define ERR_MAP_SPAWN_NBR "Error\nInvalid number of spawns\n"
+# define ERR_MAP_SPAWN_LOC "Error\nSpawn in invalid location\n"
 
 # define ERR_OPEN "Couldn't open data file"
 
-# define ERR_RGB_NBR "Error: RGB code is invalid in '%s'\n"
+# define ERR_RGB_NBR "Error\nRGB code is invalid in '%s'\n"
 
-# define ERR_TEXTURES_NBR "Error: Cub3d couldn't get 6 ligns to read textures\n"
-# define ERR_TEXTURES_CONTENT "Error: One of the six first ligns contains an \
+# define ERR_TEXTURES_NBR "Error\nCub3d couldn't get 6 ligns to read textures\n"
+# define ERR_TEXTURES_CONTENT "Error\nOne of the six first ligns contains an \
 	unknown identifier or has a duplicate\n"
-# define ERR_TEXTURES_XPM "Error: the file '%s' isn't a .xpm file\n"
+# define ERR_TEXTURES_XPM "Error\nThe file '%s' isn't a .xpm file\n"
 
-# define ERR_XPM_EMPTY "Error: the file '%s' is empty\n"
-# define ERR_XPM_INVALID "Error: the file '%s' has invalid info\n"
+# define ERR_XPM_EMPTY "Error\nThe file '%s' is empty\n"
+# define ERR_XPM_INVALID "Error\nThe file '%s' has invalid info\n"
 /**
  * Defines
 */
