@@ -1,0 +1,5 @@
+Traitement de la map: maps_test/*
+Le programme maps_test/* a été terminé avec le code de sortie 0.
+
+[32mNombre de maps valides: 0[0m
+[31mNombre de maps invalides: 0[0m

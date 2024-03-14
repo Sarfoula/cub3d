@@ -6,7 +6,7 @@
 /*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:02:01 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/13 13:37:16 by tbarde-c         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:03:56 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,24 @@ static bool	fill_rgb_values(t_rgb *texture, char **rgb)
 	return (true);
 }
 
+static bool	has_two_commas(char *str)
+{
+	int	comma_nbr;
+	int	i;
+
+	comma_nbr = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			comma_nbr++;
+		if (comma_nbr > 2)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 /**
  * Check if an rgb is correct :
  * - We got 3 different rgb code numbers
@@ -81,6 +99,8 @@ bool	check_rgb(t_rgb *texture)
 	char	*str;
 
 	str = texture->rgb_str;
+	if (has_two_commas(str) == false)
+		return (ft_printf(2, ERR_RGB_NBR, str), false);
 	i = 2;
 	while (ft_isspace(str[i]) == true)
 		i++;
