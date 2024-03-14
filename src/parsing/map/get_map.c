@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:17:35 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/07 10:16:44 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 15:50:28 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ bool	get_map(int fd, t_map *map)
 		return (false);
 	}
 	one_line_map = copy_map_lines(line, fd);
-	if (finish_reading_file(fd) == true)
+	if (finish_reading_file_error(fd) == true)
 		return (free(one_line_map), false);
 	map->str = ft_split(one_line_map, '\n');
 	crop_map(map);
