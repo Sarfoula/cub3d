@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:36:59 by yallo             #+#    #+#             */
-/*   Updated: 2024/03/13 18:34:43 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 11:52:41 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	raycasting(t_data *data, t_ray *ray, int ceiling, int floor)
 			ray->drawEnd = HEIGHT - 1;
 		else
 			trace(data->mlx.img, x, ray->drawEnd, HEIGHT, floor);
+		printf("floor color %d\n", floor);
 		step = 1.0 * TEXHEIGHT / ray->lineheight;
 		texpos = (ray->drawStart - HEIGHT / 2 + ray->lineheight / 2) * step;
 		y = ray->drawStart - 1;

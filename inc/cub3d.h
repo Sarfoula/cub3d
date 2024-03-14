@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yallo <yallo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbarde-c <tbarde-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:16 by tbarde-c          #+#    #+#             */
-/*   Updated: 2024/03/14 00:28:11 by yallo            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:01:09 by tbarde-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,8 @@ void			update_spawn_info(t_map *map, t_player *player, int i, int j);
 /********************************************************
 					XPM
 *********************************************************/
-int				rgb_to_int(char *str);
+// int				rgb_to_int(char *str);
+int				rgb_to_int(int red, int green, int blue);
 int				get_xpm_infos(t_cardinal *xpm);
 int				*xpm_to_rgb(t_cardinal *xpm);
 t_color_table	*get_color_table(t_cardinal *xpm);
